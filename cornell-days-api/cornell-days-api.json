@@ -1,0 +1,46 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "A public API for retrieving Cornell Days information",
+    "version" : "1.0.0",
+    "title" : "Cornell Days",
+    "contact" : {
+      "name" : "Cornell Open Data Initiative",
+      "url" : "https://codi.engineering.cornell.edu",
+      "email" : "codi@cornellappdev.com"
+    }
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/codi-admin/cornell-days-api/1.0.0",
+  "tags" : [ {
+    "name" : "Cornell Days"
+  } ],
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/events" : {
+      "get" : {
+        "tags" : [ "Cornell Days" ],
+        "summary" : "Get Cornell Days events",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "A JSON of Cornell Days events"
+          }
+        }
+      }
+    },
+    "/tags" : {
+      "get" : {
+        "tags" : [ "Cornell Days" ],
+        "summary" : "Get Cornell Days tags",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "A JSON of Cornell Days tags"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : { }
+}
