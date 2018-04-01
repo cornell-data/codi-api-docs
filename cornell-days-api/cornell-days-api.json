@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "info" : {
     "description" : "A public API for retrieving Cornell Days information",
-    "version" : "1.0.0",
+    "version" : "0.1",
     "title" : "Cornell Days",
     "contact" : {
       "name" : "Cornell Open Data Initiative",
