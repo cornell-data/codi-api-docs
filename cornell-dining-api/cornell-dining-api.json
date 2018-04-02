@@ -1,0 +1,1328 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "A public API for retrieving Cornell University's dining information",
+    "version" : "0.1",
+    "title" : "Cornell Dining",
+    "contact" : {
+      "name" : "Cornell Open Data Initiative",
+      "url" : "https://codi.engineering.cornell.edu",
+      "email" : "codi@cornellappdev.com"
+    }
+  },
+  "host" : "now.dining.cornell.edu",
+  "basePath" : "/api/1.0",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/config/pages.json" : {
+      "get" : {
+        "tags" : [ "config" ],
+        "summary" : "Get Cornell Dining Pages",
+        "description" : "Return all pages on the Cornell Dining website",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "A JSON of dining pages",
+            "schema" : {
+              "$ref" : "#/definitions/PagesResponse"
+            }
+          }
+        }
+      }
+    },
+    "/dining/announcements.json" : {
+      "get" : {
+        "tags" : [ "dining" ],
+        "summary" : "Get Cornell Dining Announcements",
+        "description" : "Return all announcements from Cornell Dining",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "A JSON of dining announcements",
+            "schema" : {
+              "$ref" : "#/definitions/AnnouncementsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/dining/eateries.json" : {
+      "get" : {
+        "tags" : [ "dining" ],
+        "summary" : "Get Cornell Dining Eateries",
+        "description" : "Return all eateries (i.e. dining halls, cafes) under Cornell Dining. Eateries not under Cornell Dining, like Terrace and Mac's, are not included.",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "A JSON of eateries",
+            "schema" : {
+              "$ref" : "#/definitions/EateriesResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "PagesResponse" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "type" : "string",
+          "example" : "success"
+        },
+        "data" : {
+          "$ref" : "#/definitions/PagesResponse_data"
+        },
+        "message" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "meta" : {
+          "$ref" : "#/definitions/Meta"
+        }
+      },
+      "example" : {
+        "data" : {
+          "pages" : [ {
+            "updatedDttm" : "2015-10-14T11:24:37-0400",
+            "title" : "About",
+            "body" : "body",
+            "navInclude" : true,
+            "slug" : "about",
+            "navSortIdx" : 1
+          }, {
+            "updatedDttm" : "2015-10-14T11:24:37-0400",
+            "title" : "About",
+            "body" : "body",
+            "navInclude" : true,
+            "slug" : "about",
+            "navSortIdx" : 1
+          } ]
+        },
+        "meta" : {
+          "copyright" : "Cornell University, Cornell Dining",
+          "responseDttm" : "2018-04-02T05:26:17-0400"
+        },
+        "message" : "null",
+        "status" : "success"
+      }
+    },
+    "AnnouncementsResponse" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "type" : "string",
+          "example" : "success"
+        },
+        "data" : {
+          "$ref" : "#/definitions/AnnouncementsResponse_data"
+        },
+        "message" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "meta" : {
+          "$ref" : "#/definitions/Meta"
+        }
+      },
+      "example" : {
+        "data" : {
+          "announcements" : [ ]
+        },
+        "meta" : {
+          "copyright" : "Cornell University, Cornell Dining",
+          "responseDttm" : "2018-04-02T05:26:17-0400"
+        },
+        "message" : "null",
+        "status" : "success"
+      }
+    },
+    "EateriesResponse" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "type" : "string",
+          "example" : "success"
+        },
+        "data" : {
+          "$ref" : "#/definitions/EateriesResponse_data"
+        },
+        "message" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "meta" : {
+          "$ref" : "#/definitions/Meta"
+        }
+      },
+      "example" : {
+        "data" : {
+          "eateries" : [ {
+            "payMethods" : {
+              "descr" : "cash",
+              "descrshort" : "cash"
+            },
+            "opHoursCalc" : "AUTO-GOOGLE",
+            "onlineOrderUrl" : "null",
+            "campusArea" : {
+              "descr" : "Central Campus",
+              "descrshort" : "Central"
+            },
+            "eateryTypes" : {
+              "descr" : "Cafe",
+              "descrshort" : "cafe"
+            },
+            "latitude" : 42.445784,
+            "about" : "about",
+            "nameshort" : "Atrium Café",
+            "googleCalendarId" : "googleCalendarId",
+            "aboutshort" : "aboutshort",
+            "opHoursCalcDesc" : "Google Calendar - 7 Day Accuracy",
+            "id" : 8,
+            "slug" : "Atrium-Cafe",
+            "longitude" : -76.483232,
+            "diningItems" : {
+              "descr" : "Coffee Bar - Starbucks Coffee",
+              "showCategory" : false,
+              "item" : "Starbucks Coffee",
+              "healthy" : false,
+              "icon" : "fastfood-blue",
+              "category" : "Coffee Bar",
+              "announcements" : [ ]
+            },
+            "contactEmail" : "null",
+            "coordinates" : {
+              "latitude" : 42.445784,
+              "longitude" : -76.483232
+            },
+            "cornellDining" : true,
+            "nutrition" : "null",
+            "onlineOrdering" : false,
+            "operatingHours" : {
+              "date" : "2018-04-02",
+              "events" : [ {
+                "descr" : "Coffee Cart",
+                "start" : "7:00am",
+                "end" : "7:30am",
+                "calSummary" : "Coffee Cart Opens at 7am",
+                "menu" : [ {
+                  "category" : "Special",
+                  "sortIdx" : 1,
+                  "items" : [ {
+                    "item" : "Morning Zhou Rice Porridge",
+                    "sortIdex" : 1,
+                    "healthy" : false
+                  }, {
+                    "item" : "Morning Zhou Rice Porridge",
+                    "sortIdex" : 1,
+                    "healthy" : false
+                  } ]
+                }, {
+                  "category" : "Special",
+                  "sortIdx" : 1,
+                  "items" : [ {
+                    "item" : "Morning Zhou Rice Porridge",
+                    "sortIdex" : 1,
+                    "healthy" : false
+                  }, {
+                    "item" : "Morning Zhou Rice Porridge",
+                    "sortIdex" : 1,
+                    "healthy" : false
+                  } ]
+                } ],
+                "endTimestamp" : 1522668600,
+                "startTimestamp" : 1522666800
+              }, {
+                "descr" : "Coffee Cart",
+                "start" : "7:00am",
+                "end" : "7:30am",
+                "calSummary" : "Coffee Cart Opens at 7am",
+                "menu" : [ {
+                  "category" : "Special",
+                  "sortIdx" : 1,
+                  "items" : [ {
+                    "item" : "Morning Zhou Rice Porridge",
+                    "sortIdex" : 1,
+                    "healthy" : false
+                  }, {
+                    "item" : "Morning Zhou Rice Porridge",
+                    "sortIdex" : 1,
+                    "healthy" : false
+                  } ]
+                }, {
+                  "category" : "Special",
+                  "sortIdx" : 1,
+                  "items" : [ {
+                    "item" : "Morning Zhou Rice Porridge",
+                    "sortIdex" : 1,
+                    "healthy" : false
+                  }, {
+                    "item" : "Morning Zhou Rice Porridge",
+                    "sortIdex" : 1,
+                    "healthy" : false
+                  } ]
+                } ],
+                "endTimestamp" : 1522668600,
+                "startTimestamp" : 1522666800
+              } ],
+              "status" : "EVENTS"
+            },
+            "name" : "Atrium Café",
+            "location" : "Sage Hall",
+            "opHoursDesc" : "null",
+            "contactPhone" : "607-255-7591",
+            "diningCuisines" : {
+              "descr" : "",
+              "name" : "Sushi",
+              "nameshort" : "Sushi"
+            },
+            "serviceUnitId" : 9999
+          }, {
+            "payMethods" : {
+              "descr" : "cash",
+              "descrshort" : "cash"
+            },
+            "opHoursCalc" : "AUTO-GOOGLE",
+            "onlineOrderUrl" : "null",
+            "campusArea" : {
+              "descr" : "Central Campus",
+              "descrshort" : "Central"
+            },
+            "eateryTypes" : {
+              "descr" : "Cafe",
+              "descrshort" : "cafe"
+            },
+            "latitude" : 42.445784,
+            "about" : "about",
+            "nameshort" : "Atrium Café",
+            "googleCalendarId" : "googleCalendarId",
+            "aboutshort" : "aboutshort",
+            "opHoursCalcDesc" : "Google Calendar - 7 Day Accuracy",
+            "id" : 8,
+            "slug" : "Atrium-Cafe",
+            "longitude" : -76.483232,
+            "diningItems" : {
+              "descr" : "Coffee Bar - Starbucks Coffee",
+              "showCategory" : false,
+              "item" : "Starbucks Coffee",
+              "healthy" : false,
+              "icon" : "fastfood-blue",
+              "category" : "Coffee Bar",
+              "announcements" : [ ]
+            },
+            "contactEmail" : "null",
+            "coordinates" : {
+              "latitude" : 42.445784,
+              "longitude" : -76.483232
+            },
+            "cornellDining" : true,
+            "nutrition" : "null",
+            "onlineOrdering" : false,
+            "operatingHours" : {
+              "date" : "2018-04-02",
+              "events" : [ {
+                "descr" : "Coffee Cart",
+                "start" : "7:00am",
+                "end" : "7:30am",
+                "calSummary" : "Coffee Cart Opens at 7am",
+                "menu" : [ {
+                  "category" : "Special",
+                  "sortIdx" : 1,
+                  "items" : [ {
+                    "item" : "Morning Zhou Rice Porridge",
+                    "sortIdex" : 1,
+                    "healthy" : false
+                  }, {
+                    "item" : "Morning Zhou Rice Porridge",
+                    "sortIdex" : 1,
+                    "healthy" : false
+                  } ]
+                }, {
+                  "category" : "Special",
+                  "sortIdx" : 1,
+                  "items" : [ {
+                    "item" : "Morning Zhou Rice Porridge",
+                    "sortIdex" : 1,
+                    "healthy" : false
+                  }, {
+                    "item" : "Morning Zhou Rice Porridge",
+                    "sortIdex" : 1,
+                    "healthy" : false
+                  } ]
+                } ],
+                "endTimestamp" : 1522668600,
+                "startTimestamp" : 1522666800
+              }, {
+                "descr" : "Coffee Cart",
+                "start" : "7:00am",
+                "end" : "7:30am",
+                "calSummary" : "Coffee Cart Opens at 7am",
+                "menu" : [ {
+                  "category" : "Special",
+                  "sortIdx" : 1,
+                  "items" : [ {
+                    "item" : "Morning Zhou Rice Porridge",
+                    "sortIdex" : 1,
+                    "healthy" : false
+                  }, {
+                    "item" : "Morning Zhou Rice Porridge",
+                    "sortIdex" : 1,
+                    "healthy" : false
+                  } ]
+                }, {
+                  "category" : "Special",
+                  "sortIdx" : 1,
+                  "items" : [ {
+                    "item" : "Morning Zhou Rice Porridge",
+                    "sortIdex" : 1,
+                    "healthy" : false
+                  }, {
+                    "item" : "Morning Zhou Rice Porridge",
+                    "sortIdex" : 1,
+                    "healthy" : false
+                  } ]
+                } ],
+                "endTimestamp" : 1522668600,
+                "startTimestamp" : 1522666800
+              } ],
+              "status" : "EVENTS"
+            },
+            "name" : "Atrium Café",
+            "location" : "Sage Hall",
+            "opHoursDesc" : "null",
+            "contactPhone" : "607-255-7591",
+            "diningCuisines" : {
+              "descr" : "",
+              "name" : "Sushi",
+              "nameshort" : "Sushi"
+            },
+            "serviceUnitId" : 9999
+          } ]
+        },
+        "meta" : {
+          "copyright" : "Cornell University, Cornell Dining",
+          "responseDttm" : "2018-04-02T05:26:17-0400"
+        },
+        "message" : "null",
+        "status" : "success"
+      }
+    },
+    "Page" : {
+      "type" : "object",
+      "properties" : {
+        "slug" : {
+          "type" : "string",
+          "example" : "about"
+        },
+        "title" : {
+          "type" : "string",
+          "example" : "About"
+        },
+        "body" : {
+          "type" : "string"
+        },
+        "updatedDttm" : {
+          "type" : "string",
+          "example" : "2015-10-14T11:24:37-0400"
+        },
+        "navInclude" : {
+          "type" : "boolean",
+          "example" : true
+        },
+        "navSortIdx" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 1
+        }
+      },
+      "example" : {
+        "updatedDttm" : "2015-10-14T11:24:37-0400",
+        "title" : "About",
+        "body" : "body",
+        "navInclude" : true,
+        "slug" : "about",
+        "navSortIdx" : 1
+      }
+    },
+    "Announcement" : {
+      "type" : "object"
+    },
+    "Eatery" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 8
+        },
+        "slug" : {
+          "type" : "string",
+          "example" : "Atrium-Cafe"
+        },
+        "name" : {
+          "type" : "string",
+          "example" : "Atrium Café"
+        },
+        "nameshort" : {
+          "type" : "string",
+          "example" : "Atrium Café"
+        },
+        "about" : {
+          "type" : "string"
+        },
+        "aboutshort" : {
+          "type" : "string"
+        },
+        "nutrition" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "cornellDining" : {
+          "type" : "boolean",
+          "example" : true
+        },
+        "opHoursCalc" : {
+          "type" : "string",
+          "example" : "AUTO-GOOGLE"
+        },
+        "opHoursCalcDesc" : {
+          "type" : "string",
+          "example" : "Google Calendar - 7 Day Accuracy"
+        },
+        "opHoursDesc" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "googleCalendarId" : {
+          "type" : "string"
+        },
+        "onlineOrdering" : {
+          "type" : "boolean",
+          "example" : false
+        },
+        "onlineOrderUrl" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "contactPhone" : {
+          "type" : "string",
+          "example" : "607-255-7591"
+        },
+        "contactEmail" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "serviceUnitId" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 9999
+        },
+        "campusArea" : {
+          "$ref" : "#/definitions/Eatery_campusArea"
+        },
+        "latitude" : {
+          "type" : "number",
+          "example" : 42.445784
+        },
+        "longitude" : {
+          "type" : "number",
+          "example" : -76.483232
+        },
+        "location" : {
+          "type" : "string",
+          "example" : "Sage Hall"
+        },
+        "coordinates" : {
+          "$ref" : "#/definitions/Eatery_coordinates"
+        },
+        "operatingHours" : {
+          "$ref" : "#/definitions/Eatery_operatingHours"
+        },
+        "eateryTypes" : {
+          "$ref" : "#/definitions/Eatery_eateryTypes"
+        },
+        "diningCuisines" : {
+          "$ref" : "#/definitions/Eatery_diningCuisines"
+        },
+        "payMethods" : {
+          "$ref" : "#/definitions/Eatery_payMethods"
+        },
+        "diningItems" : {
+          "$ref" : "#/definitions/Eatery_diningItems"
+        }
+      },
+      "example" : {
+        "payMethods" : {
+          "descr" : "cash",
+          "descrshort" : "cash"
+        },
+        "opHoursCalc" : "AUTO-GOOGLE",
+        "onlineOrderUrl" : "null",
+        "campusArea" : {
+          "descr" : "Central Campus",
+          "descrshort" : "Central"
+        },
+        "eateryTypes" : {
+          "descr" : "Cafe",
+          "descrshort" : "cafe"
+        },
+        "latitude" : 42.445784,
+        "about" : "about",
+        "nameshort" : "Atrium Café",
+        "googleCalendarId" : "googleCalendarId",
+        "aboutshort" : "aboutshort",
+        "opHoursCalcDesc" : "Google Calendar - 7 Day Accuracy",
+        "id" : 8,
+        "slug" : "Atrium-Cafe",
+        "longitude" : -76.483232,
+        "diningItems" : {
+          "descr" : "Coffee Bar - Starbucks Coffee",
+          "showCategory" : false,
+          "item" : "Starbucks Coffee",
+          "healthy" : false,
+          "icon" : "fastfood-blue",
+          "category" : "Coffee Bar",
+          "announcements" : [ ]
+        },
+        "contactEmail" : "null",
+        "coordinates" : {
+          "latitude" : 42.445784,
+          "longitude" : -76.483232
+        },
+        "cornellDining" : true,
+        "nutrition" : "null",
+        "onlineOrdering" : false,
+        "operatingHours" : {
+          "date" : "2018-04-02",
+          "events" : [ {
+            "descr" : "Coffee Cart",
+            "start" : "7:00am",
+            "end" : "7:30am",
+            "calSummary" : "Coffee Cart Opens at 7am",
+            "menu" : [ {
+              "category" : "Special",
+              "sortIdx" : 1,
+              "items" : [ {
+                "item" : "Morning Zhou Rice Porridge",
+                "sortIdex" : 1,
+                "healthy" : false
+              }, {
+                "item" : "Morning Zhou Rice Porridge",
+                "sortIdex" : 1,
+                "healthy" : false
+              } ]
+            }, {
+              "category" : "Special",
+              "sortIdx" : 1,
+              "items" : [ {
+                "item" : "Morning Zhou Rice Porridge",
+                "sortIdex" : 1,
+                "healthy" : false
+              }, {
+                "item" : "Morning Zhou Rice Porridge",
+                "sortIdex" : 1,
+                "healthy" : false
+              } ]
+            } ],
+            "endTimestamp" : 1522668600,
+            "startTimestamp" : 1522666800
+          }, {
+            "descr" : "Coffee Cart",
+            "start" : "7:00am",
+            "end" : "7:30am",
+            "calSummary" : "Coffee Cart Opens at 7am",
+            "menu" : [ {
+              "category" : "Special",
+              "sortIdx" : 1,
+              "items" : [ {
+                "item" : "Morning Zhou Rice Porridge",
+                "sortIdex" : 1,
+                "healthy" : false
+              }, {
+                "item" : "Morning Zhou Rice Porridge",
+                "sortIdex" : 1,
+                "healthy" : false
+              } ]
+            }, {
+              "category" : "Special",
+              "sortIdx" : 1,
+              "items" : [ {
+                "item" : "Morning Zhou Rice Porridge",
+                "sortIdex" : 1,
+                "healthy" : false
+              }, {
+                "item" : "Morning Zhou Rice Porridge",
+                "sortIdex" : 1,
+                "healthy" : false
+              } ]
+            } ],
+            "endTimestamp" : 1522668600,
+            "startTimestamp" : 1522666800
+          } ],
+          "status" : "EVENTS"
+        },
+        "name" : "Atrium Café",
+        "location" : "Sage Hall",
+        "opHoursDesc" : "null",
+        "contactPhone" : "607-255-7591",
+        "diningCuisines" : {
+          "descr" : "",
+          "name" : "Sushi",
+          "nameshort" : "Sushi"
+        },
+        "serviceUnitId" : 9999
+      }
+    },
+    "Meta" : {
+      "type" : "object",
+      "properties" : {
+        "copyright" : {
+          "type" : "string",
+          "example" : "Cornell University, Cornell Dining"
+        },
+        "responseDttm" : {
+          "type" : "string",
+          "example" : "2018-04-02T05:26:17-0400"
+        }
+      },
+      "example" : {
+        "copyright" : "Cornell University, Cornell Dining",
+        "responseDttm" : "2018-04-02T05:26:17-0400"
+      }
+    },
+    "PagesResponse_data" : {
+      "properties" : {
+        "pages" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Page"
+          }
+        }
+      },
+      "example" : {
+        "pages" : [ {
+          "updatedDttm" : "2015-10-14T11:24:37-0400",
+          "title" : "About",
+          "body" : "body",
+          "navInclude" : true,
+          "slug" : "about",
+          "navSortIdx" : 1
+        }, {
+          "updatedDttm" : "2015-10-14T11:24:37-0400",
+          "title" : "About",
+          "body" : "body",
+          "navInclude" : true,
+          "slug" : "about",
+          "navSortIdx" : 1
+        } ]
+      }
+    },
+    "AnnouncementsResponse_data" : {
+      "properties" : {
+        "announcements" : {
+          "type" : "array",
+          "example" : [ ],
+          "items" : {
+            "$ref" : "#/definitions/Announcement"
+          }
+        }
+      },
+      "example" : {
+        "announcements" : [ ]
+      }
+    },
+    "EateriesResponse_data" : {
+      "properties" : {
+        "eateries" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Eatery"
+          }
+        }
+      },
+      "example" : {
+        "eateries" : [ {
+          "payMethods" : {
+            "descr" : "cash",
+            "descrshort" : "cash"
+          },
+          "opHoursCalc" : "AUTO-GOOGLE",
+          "onlineOrderUrl" : "null",
+          "campusArea" : {
+            "descr" : "Central Campus",
+            "descrshort" : "Central"
+          },
+          "eateryTypes" : {
+            "descr" : "Cafe",
+            "descrshort" : "cafe"
+          },
+          "latitude" : 42.445784,
+          "about" : "about",
+          "nameshort" : "Atrium Café",
+          "googleCalendarId" : "googleCalendarId",
+          "aboutshort" : "aboutshort",
+          "opHoursCalcDesc" : "Google Calendar - 7 Day Accuracy",
+          "id" : 8,
+          "slug" : "Atrium-Cafe",
+          "longitude" : -76.483232,
+          "diningItems" : {
+            "descr" : "Coffee Bar - Starbucks Coffee",
+            "showCategory" : false,
+            "item" : "Starbucks Coffee",
+            "healthy" : false,
+            "icon" : "fastfood-blue",
+            "category" : "Coffee Bar",
+            "announcements" : [ ]
+          },
+          "contactEmail" : "null",
+          "coordinates" : {
+            "latitude" : 42.445784,
+            "longitude" : -76.483232
+          },
+          "cornellDining" : true,
+          "nutrition" : "null",
+          "onlineOrdering" : false,
+          "operatingHours" : {
+            "date" : "2018-04-02",
+            "events" : [ {
+              "descr" : "Coffee Cart",
+              "start" : "7:00am",
+              "end" : "7:30am",
+              "calSummary" : "Coffee Cart Opens at 7am",
+              "menu" : [ {
+                "category" : "Special",
+                "sortIdx" : 1,
+                "items" : [ {
+                  "item" : "Morning Zhou Rice Porridge",
+                  "sortIdex" : 1,
+                  "healthy" : false
+                }, {
+                  "item" : "Morning Zhou Rice Porridge",
+                  "sortIdex" : 1,
+                  "healthy" : false
+                } ]
+              }, {
+                "category" : "Special",
+                "sortIdx" : 1,
+                "items" : [ {
+                  "item" : "Morning Zhou Rice Porridge",
+                  "sortIdex" : 1,
+                  "healthy" : false
+                }, {
+                  "item" : "Morning Zhou Rice Porridge",
+                  "sortIdex" : 1,
+                  "healthy" : false
+                } ]
+              } ],
+              "endTimestamp" : 1522668600,
+              "startTimestamp" : 1522666800
+            }, {
+              "descr" : "Coffee Cart",
+              "start" : "7:00am",
+              "end" : "7:30am",
+              "calSummary" : "Coffee Cart Opens at 7am",
+              "menu" : [ {
+                "category" : "Special",
+                "sortIdx" : 1,
+                "items" : [ {
+                  "item" : "Morning Zhou Rice Porridge",
+                  "sortIdex" : 1,
+                  "healthy" : false
+                }, {
+                  "item" : "Morning Zhou Rice Porridge",
+                  "sortIdex" : 1,
+                  "healthy" : false
+                } ]
+              }, {
+                "category" : "Special",
+                "sortIdx" : 1,
+                "items" : [ {
+                  "item" : "Morning Zhou Rice Porridge",
+                  "sortIdex" : 1,
+                  "healthy" : false
+                }, {
+                  "item" : "Morning Zhou Rice Porridge",
+                  "sortIdex" : 1,
+                  "healthy" : false
+                } ]
+              } ],
+              "endTimestamp" : 1522668600,
+              "startTimestamp" : 1522666800
+            } ],
+            "status" : "EVENTS"
+          },
+          "name" : "Atrium Café",
+          "location" : "Sage Hall",
+          "opHoursDesc" : "null",
+          "contactPhone" : "607-255-7591",
+          "diningCuisines" : {
+            "descr" : "",
+            "name" : "Sushi",
+            "nameshort" : "Sushi"
+          },
+          "serviceUnitId" : 9999
+        }, {
+          "payMethods" : {
+            "descr" : "cash",
+            "descrshort" : "cash"
+          },
+          "opHoursCalc" : "AUTO-GOOGLE",
+          "onlineOrderUrl" : "null",
+          "campusArea" : {
+            "descr" : "Central Campus",
+            "descrshort" : "Central"
+          },
+          "eateryTypes" : {
+            "descr" : "Cafe",
+            "descrshort" : "cafe"
+          },
+          "latitude" : 42.445784,
+          "about" : "about",
+          "nameshort" : "Atrium Café",
+          "googleCalendarId" : "googleCalendarId",
+          "aboutshort" : "aboutshort",
+          "opHoursCalcDesc" : "Google Calendar - 7 Day Accuracy",
+          "id" : 8,
+          "slug" : "Atrium-Cafe",
+          "longitude" : -76.483232,
+          "diningItems" : {
+            "descr" : "Coffee Bar - Starbucks Coffee",
+            "showCategory" : false,
+            "item" : "Starbucks Coffee",
+            "healthy" : false,
+            "icon" : "fastfood-blue",
+            "category" : "Coffee Bar",
+            "announcements" : [ ]
+          },
+          "contactEmail" : "null",
+          "coordinates" : {
+            "latitude" : 42.445784,
+            "longitude" : -76.483232
+          },
+          "cornellDining" : true,
+          "nutrition" : "null",
+          "onlineOrdering" : false,
+          "operatingHours" : {
+            "date" : "2018-04-02",
+            "events" : [ {
+              "descr" : "Coffee Cart",
+              "start" : "7:00am",
+              "end" : "7:30am",
+              "calSummary" : "Coffee Cart Opens at 7am",
+              "menu" : [ {
+                "category" : "Special",
+                "sortIdx" : 1,
+                "items" : [ {
+                  "item" : "Morning Zhou Rice Porridge",
+                  "sortIdex" : 1,
+                  "healthy" : false
+                }, {
+                  "item" : "Morning Zhou Rice Porridge",
+                  "sortIdex" : 1,
+                  "healthy" : false
+                } ]
+              }, {
+                "category" : "Special",
+                "sortIdx" : 1,
+                "items" : [ {
+                  "item" : "Morning Zhou Rice Porridge",
+                  "sortIdex" : 1,
+                  "healthy" : false
+                }, {
+                  "item" : "Morning Zhou Rice Porridge",
+                  "sortIdex" : 1,
+                  "healthy" : false
+                } ]
+              } ],
+              "endTimestamp" : 1522668600,
+              "startTimestamp" : 1522666800
+            }, {
+              "descr" : "Coffee Cart",
+              "start" : "7:00am",
+              "end" : "7:30am",
+              "calSummary" : "Coffee Cart Opens at 7am",
+              "menu" : [ {
+                "category" : "Special",
+                "sortIdx" : 1,
+                "items" : [ {
+                  "item" : "Morning Zhou Rice Porridge",
+                  "sortIdex" : 1,
+                  "healthy" : false
+                }, {
+                  "item" : "Morning Zhou Rice Porridge",
+                  "sortIdex" : 1,
+                  "healthy" : false
+                } ]
+              }, {
+                "category" : "Special",
+                "sortIdx" : 1,
+                "items" : [ {
+                  "item" : "Morning Zhou Rice Porridge",
+                  "sortIdex" : 1,
+                  "healthy" : false
+                }, {
+                  "item" : "Morning Zhou Rice Porridge",
+                  "sortIdex" : 1,
+                  "healthy" : false
+                } ]
+              } ],
+              "endTimestamp" : 1522668600,
+              "startTimestamp" : 1522666800
+            } ],
+            "status" : "EVENTS"
+          },
+          "name" : "Atrium Café",
+          "location" : "Sage Hall",
+          "opHoursDesc" : "null",
+          "contactPhone" : "607-255-7591",
+          "diningCuisines" : {
+            "descr" : "",
+            "name" : "Sushi",
+            "nameshort" : "Sushi"
+          },
+          "serviceUnitId" : 9999
+        } ]
+      }
+    },
+    "Eatery_campusArea" : {
+      "properties" : {
+        "descr" : {
+          "type" : "string",
+          "example" : "Central Campus"
+        },
+        "descrshort" : {
+          "type" : "string",
+          "example" : "Central"
+        }
+      },
+      "example" : {
+        "descr" : "Central Campus",
+        "descrshort" : "Central"
+      }
+    },
+    "Eatery_coordinates" : {
+      "properties" : {
+        "latitude" : {
+          "type" : "number",
+          "example" : 42.445784
+        },
+        "longitude" : {
+          "type" : "number",
+          "example" : -76.483232
+        }
+      },
+      "example" : {
+        "latitude" : 42.445784,
+        "longitude" : -76.483232
+      }
+    },
+    "Eatery_operatingHours_items" : {
+      "properties" : {
+        "item" : {
+          "type" : "string",
+          "example" : "Morning Zhou Rice Porridge"
+        },
+        "healthy" : {
+          "type" : "boolean",
+          "example" : false
+        },
+        "sortIdex" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 1
+        }
+      },
+      "example" : {
+        "item" : "Morning Zhou Rice Porridge",
+        "sortIdex" : 1,
+        "healthy" : false
+      }
+    },
+    "Eatery_operatingHours_menu" : {
+      "properties" : {
+        "category" : {
+          "type" : "string",
+          "example" : "Special"
+        },
+        "sortIdx" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 1
+        },
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Eatery_operatingHours_items"
+          }
+        }
+      },
+      "example" : {
+        "category" : "Special",
+        "sortIdx" : 1,
+        "items" : [ {
+          "item" : "Morning Zhou Rice Porridge",
+          "sortIdex" : 1,
+          "healthy" : false
+        }, {
+          "item" : "Morning Zhou Rice Porridge",
+          "sortIdex" : 1,
+          "healthy" : false
+        } ]
+      }
+    },
+    "Eatery_operatingHours_events" : {
+      "properties" : {
+        "descr" : {
+          "type" : "string",
+          "example" : "Coffee Cart"
+        },
+        "startTimestamp" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 1522666800
+        },
+        "endTimestamp" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 1522668600
+        },
+        "start" : {
+          "type" : "string",
+          "example" : "7:00am"
+        },
+        "end" : {
+          "type" : "string",
+          "example" : "7:30am"
+        },
+        "menu" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Eatery_operatingHours_menu"
+          }
+        },
+        "calSummary" : {
+          "type" : "string",
+          "example" : "Coffee Cart Opens at 7am"
+        }
+      },
+      "example" : {
+        "descr" : "Coffee Cart",
+        "start" : "7:00am",
+        "end" : "7:30am",
+        "calSummary" : "Coffee Cart Opens at 7am",
+        "menu" : [ {
+          "category" : "Special",
+          "sortIdx" : 1,
+          "items" : [ {
+            "item" : "Morning Zhou Rice Porridge",
+            "sortIdex" : 1,
+            "healthy" : false
+          }, {
+            "item" : "Morning Zhou Rice Porridge",
+            "sortIdex" : 1,
+            "healthy" : false
+          } ]
+        }, {
+          "category" : "Special",
+          "sortIdx" : 1,
+          "items" : [ {
+            "item" : "Morning Zhou Rice Porridge",
+            "sortIdex" : 1,
+            "healthy" : false
+          }, {
+            "item" : "Morning Zhou Rice Porridge",
+            "sortIdex" : 1,
+            "healthy" : false
+          } ]
+        } ],
+        "endTimestamp" : 1522668600,
+        "startTimestamp" : 1522666800
+      }
+    },
+    "Eatery_operatingHours" : {
+      "properties" : {
+        "date" : {
+          "type" : "string",
+          "example" : "2018-04-02"
+        },
+        "status" : {
+          "type" : "string",
+          "example" : "EVENTS"
+        },
+        "events" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Eatery_operatingHours_events"
+          }
+        }
+      },
+      "example" : {
+        "date" : "2018-04-02",
+        "events" : [ {
+          "descr" : "Coffee Cart",
+          "start" : "7:00am",
+          "end" : "7:30am",
+          "calSummary" : "Coffee Cart Opens at 7am",
+          "menu" : [ {
+            "category" : "Special",
+            "sortIdx" : 1,
+            "items" : [ {
+              "item" : "Morning Zhou Rice Porridge",
+              "sortIdex" : 1,
+              "healthy" : false
+            }, {
+              "item" : "Morning Zhou Rice Porridge",
+              "sortIdex" : 1,
+              "healthy" : false
+            } ]
+          }, {
+            "category" : "Special",
+            "sortIdx" : 1,
+            "items" : [ {
+              "item" : "Morning Zhou Rice Porridge",
+              "sortIdex" : 1,
+              "healthy" : false
+            }, {
+              "item" : "Morning Zhou Rice Porridge",
+              "sortIdex" : 1,
+              "healthy" : false
+            } ]
+          } ],
+          "endTimestamp" : 1522668600,
+          "startTimestamp" : 1522666800
+        }, {
+          "descr" : "Coffee Cart",
+          "start" : "7:00am",
+          "end" : "7:30am",
+          "calSummary" : "Coffee Cart Opens at 7am",
+          "menu" : [ {
+            "category" : "Special",
+            "sortIdx" : 1,
+            "items" : [ {
+              "item" : "Morning Zhou Rice Porridge",
+              "sortIdex" : 1,
+              "healthy" : false
+            }, {
+              "item" : "Morning Zhou Rice Porridge",
+              "sortIdex" : 1,
+              "healthy" : false
+            } ]
+          }, {
+            "category" : "Special",
+            "sortIdx" : 1,
+            "items" : [ {
+              "item" : "Morning Zhou Rice Porridge",
+              "sortIdex" : 1,
+              "healthy" : false
+            }, {
+              "item" : "Morning Zhou Rice Porridge",
+              "sortIdex" : 1,
+              "healthy" : false
+            } ]
+          } ],
+          "endTimestamp" : 1522668600,
+          "startTimestamp" : 1522666800
+        } ],
+        "status" : "EVENTS"
+      }
+    },
+    "Eatery_eateryTypes" : {
+      "properties" : {
+        "descr" : {
+          "type" : "string",
+          "example" : "Cafe"
+        },
+        "descrshort" : {
+          "type" : "string",
+          "example" : "cafe"
+        }
+      },
+      "example" : {
+        "descr" : "Cafe",
+        "descrshort" : "cafe"
+      }
+    },
+    "Eatery_diningCuisines" : {
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "example" : "Sushi"
+        },
+        "nameshort" : {
+          "type" : "string",
+          "example" : "Sushi"
+        },
+        "descr" : {
+          "type" : "string",
+          "example" : ""
+        }
+      },
+      "example" : {
+        "descr" : "",
+        "name" : "Sushi",
+        "nameshort" : "Sushi"
+      }
+    },
+    "Eatery_payMethods" : {
+      "properties" : {
+        "descr" : {
+          "type" : "string",
+          "example" : "cash"
+        },
+        "descrshort" : {
+          "type" : "string",
+          "example" : "cash"
+        }
+      },
+      "example" : {
+        "descr" : "cash",
+        "descrshort" : "cash"
+      }
+    },
+    "Eatery_diningItems" : {
+      "properties" : {
+        "descr" : {
+          "type" : "string",
+          "example" : "Coffee Bar - Starbucks Coffee"
+        },
+        "category" : {
+          "type" : "string",
+          "example" : "Coffee Bar"
+        },
+        "item" : {
+          "type" : "string",
+          "example" : "Starbucks Coffee"
+        },
+        "healthy" : {
+          "type" : "boolean",
+          "example" : false
+        },
+        "showCategory" : {
+          "type" : "boolean",
+          "example" : false
+        },
+        "announcements" : {
+          "type" : "array",
+          "example" : [ ],
+          "items" : {
+            "$ref" : "#/definitions/Announcement"
+          }
+        },
+        "icon" : {
+          "type" : "string",
+          "example" : "fastfood-blue"
+        }
+      },
+      "example" : {
+        "descr" : "Coffee Bar - Starbucks Coffee",
+        "showCategory" : false,
+        "item" : "Starbucks Coffee",
+        "healthy" : false,
+        "icon" : "fastfood-blue",
+        "category" : "Coffee Bar",
+        "announcements" : [ ]
+      }
+    }
+  }
+}
