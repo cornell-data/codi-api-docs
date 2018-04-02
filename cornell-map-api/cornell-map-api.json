@@ -1,0 +1,61 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "A public API for retrieving Cornell University's map information",
+    "version" : "0.1",
+    "title" : "Cornell Map",
+    "contact" : {
+      "name" : "Cornell Open Data Initiative",
+      "url" : "https://codi.engineering.cornell.edu",
+      "email" : "codi@cornellappdev.com"
+    }
+  },
+  "host" : "www.cornell.edu",
+  "basePath" : "/about/maps",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/locations.cfm" : {
+      "get" : {
+        "summary" : "Get Cornell Locations",
+        "parameters" : [ {
+          "name" : "returnJSON",
+          "in" : "query",
+          "description" : "1 if JSON should be returned",
+          "required" : true,
+          "type" : "string",
+          "default" : "1"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "A JSON of Cornell locations"
+          }
+        }
+      }
+    },
+    "/overlay-items.cfm" : {
+      "get" : {
+        "summary" : "Get Cornell Map Items",
+        "parameters" : [ {
+          "name" : "layer",
+          "in" : "query",
+          "description" : "Available Layers:\n - AllGender\n - BigRedBikes\n - Bikes\n - Blue\n - Carshare\n - Charging\n - FeaturedEvents\n - FoodServices\n - Lactation\n - Parkmobile\n - Sustainability\n - TCAT\n - TodayEvents\n - Tour\n - Water",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "clearCache",
+          "in" : "query",
+          "description" : "1 if cache should be cleared",
+          "required" : true,
+          "type" : "string",
+          "default" : "1"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "A JSON of Cornell locations matching the specified layer"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : { }
+}
