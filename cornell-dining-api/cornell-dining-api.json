@@ -11,22 +11,27 @@
     }
   },
   "host" : "now.dining.cornell.edu",
-  "basePath" : "/api/1.0/dining",
+  "basePath" : "/api/1.0",
   "schemes" : [ "https" ],
   "paths" : {
-    "/eateries.json" : {
+    "/config/pages.json" : {
       "get" : {
-        "summary" : "Get Cornell Eateries",
+        "tags" : [ "config" ],
+        "summary" : "Get Cornell Dining Pages",
         "parameters" : [ ],
         "responses" : {
           "200" : {
-            "description" : "A JSON of eateries"
+            "description" : "A JSON of dining pages",
+            "schema" : {
+              "$ref" : "#/definitions/PagesResponse"
+            }
           }
         }
       }
     },
-    "/announcements.json" : {
+    "/dining/announcements.json" : {
       "get" : {
+        "tags" : [ "dining" ],
         "summary" : "Get Cornell Dining Announcements",
         "parameters" : [ ],
         "responses" : {
@@ -35,7 +40,146 @@
           }
         }
       }
+    },
+    "/dining/eateries.json" : {
+      "get" : {
+        "tags" : [ "dining" ],
+        "summary" : "Get Cornell Dining Eateries",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "A JSON of eateries"
+          }
+        }
+      }
     }
   },
-  "definitions" : { }
+  "definitions" : {
+    "PagesResponse" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "type" : "string",
+          "example" : "success"
+        },
+        "data" : {
+          "$ref" : "#/definitions/PageData"
+        },
+        "message" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "meta" : {
+          "$ref" : "#/definitions/PageMeta"
+        }
+      },
+      "example" : {
+        "data" : {
+          "pages" : [ {
+            "updatedDttm" : "2015-10-14T11:24:37-0400",
+            "title" : "About",
+            "body" : "body",
+            "navInclude" : true,
+            "slug" : "about",
+            "navSortIdx" : 1
+          }, {
+            "updatedDttm" : "2015-10-14T11:24:37-0400",
+            "title" : "About",
+            "body" : "body",
+            "navInclude" : true,
+            "slug" : "about",
+            "navSortIdx" : 1
+          } ]
+        },
+        "meta" : {
+          "copyright" : "Cornell University, Cornell Dining",
+          "responseDttm" : "2018-04-02T05:26:17-0400"
+        },
+        "message" : "null",
+        "status" : "success"
+      }
+    },
+    "PageData" : {
+      "type" : "object",
+      "properties" : {
+        "pages" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Page"
+          }
+        }
+      },
+      "example" : {
+        "pages" : [ {
+          "updatedDttm" : "2015-10-14T11:24:37-0400",
+          "title" : "About",
+          "body" : "body",
+          "navInclude" : true,
+          "slug" : "about",
+          "navSortIdx" : 1
+        }, {
+          "updatedDttm" : "2015-10-14T11:24:37-0400",
+          "title" : "About",
+          "body" : "body",
+          "navInclude" : true,
+          "slug" : "about",
+          "navSortIdx" : 1
+        } ]
+      }
+    },
+    "PageMeta" : {
+      "type" : "object",
+      "properties" : {
+        "copyright" : {
+          "type" : "string",
+          "example" : "Cornell University, Cornell Dining"
+        },
+        "responseDttm" : {
+          "type" : "string",
+          "example" : "2018-04-02T05:26:17-0400"
+        }
+      },
+      "example" : {
+        "copyright" : "Cornell University, Cornell Dining",
+        "responseDttm" : "2018-04-02T05:26:17-0400"
+      }
+    },
+    "Page" : {
+      "type" : "object",
+      "properties" : {
+        "slug" : {
+          "type" : "string",
+          "example" : "about"
+        },
+        "title" : {
+          "type" : "string",
+          "example" : "About"
+        },
+        "body" : {
+          "type" : "string"
+        },
+        "updatedDttm" : {
+          "type" : "string",
+          "example" : "2015-10-14T11:24:37-0400"
+        },
+        "navInclude" : {
+          "type" : "boolean",
+          "example" : true
+        },
+        "navSortIdx" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 1
+        }
+      },
+      "example" : {
+        "updatedDttm" : "2015-10-14T11:24:37-0400",
+        "title" : "About",
+        "body" : "body",
+        "navInclude" : true,
+        "slug" : "about",
+        "navSortIdx" : 1
+      }
+    }
+  }
 }
