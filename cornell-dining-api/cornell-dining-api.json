@@ -125,7 +125,7 @@
       },
       "example" : {
         "data" : {
-          "announcements" : [ { }, { } ]
+          "announcements" : [ ]
         },
         "meta" : {
           "copyright" : "Cornell University, Cornell Dining",
@@ -155,7 +155,7 @@
       },
       "example" : {
         "data" : {
-          "eateries" : [ { }, { } ]
+          "eateries" : [ ]
         },
         "meta" : {
           "copyright" : "Cornell University, Cornell Dining",
@@ -256,26 +256,28 @@
       "properties" : {
         "announcements" : {
           "type" : "array",
+          "example" : [ ],
           "items" : {
             "$ref" : "#/definitions/Announcement"
           }
         }
       },
       "example" : {
-        "announcements" : [ { }, { } ]
+        "announcements" : [ ]
       }
     },
     "EateriesResponse_data" : {
       "properties" : {
         "eateries" : {
           "type" : "array",
+          "example" : [ ],
           "items" : {
             "$ref" : "#/definitions/Eatery"
           }
         }
       },
       "example" : {
-        "eateries" : [ { }, { } ]
+        "eateries" : [ ]
       }
     }
   }
