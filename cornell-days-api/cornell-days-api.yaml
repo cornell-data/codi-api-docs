@@ -1,0 +1,316 @@
+---
+swagger: 2.0
+info:
+  description: A public API for retrieving Cornell Days information
+  version: 0.1
+  title: Cornell Days
+  contact:
+    name: Cornell Open Data Initiative
+    url: https://codi.engineering.cornell.edu
+    email: codi@cornellappdev.com
+host: schedule.cornelldays.cornell.edu
+basePath: /api/itin/cornelldays
+schemes:
+- https
+paths:
+  /events:
+    get:
+      tags:
+      - events
+      summary: Get Cornell Days events
+      description: Return all events related to Cornell Days
+      parameters: []
+      responses:
+        200:
+          description: A JSON of Cornell Days events
+          schema:
+            $ref: '#/definitions/EventsResponse'
+  /tags:
+    get:
+      tags:
+      - tags
+      summary: Get Cornell Days tags
+      description: Return all tags describing Cornell Days events
+      parameters: []
+      responses:
+        200:
+          description: A JSON of Cornell Days tags
+          schema:
+            $ref: '#/definitions/TagsResponse'
+definitions:
+  EventsResponse:
+    type: object
+    properties:
+      EVENTS:
+        type: array
+        items:
+          $ref: '#/definitions/Event'
+      META:
+        $ref: '#/definitions/EventsResponse_META'
+    example:
+      META:
+        REQUESTTIME: 7:17 AM April 3, 2018
+        EVENT_STATUS: published
+        FILTER_TAGS:
+        NUM_EVENTS: 64
+      EVENTS:
+      - EVENT_ADDITIONAL_FEE:
+        EVENT_DESCRIPTION: Representatives from admissions, advising and career development, along with faculty members and student ambassadors will give an overview of the College of Arts and Sciences (A&S), and answer questions about undergraduate life at Cornell.
+        EVENT_TITLE: A&S Information Session
+        EVENT_LOCATION: G10 Biotechnology Building
+        EVENT_TAGS:
+        - TAG_LABEL: A&S - College of Arts and Sciences
+          TAG_ID: 4432D6B5-9DAA-484F-1BA06B88A600DD13
+        - TAG_LABEL: A&S - College of Arts and Sciences
+          TAG_ID: 4432D6B5-9DAA-484F-1BA06B88A600DD13
+        EVENT_TIMES:
+        - TIME_START_FORMATTED: 10:10 a.m. Thu, Apr 12, 2018
+          TIME_LOCATION_OVERRIDE:
+          TIME_END_FORMATTED: 11:00 a.m. Thu, Apr 12, 2018
+          TIME_NOTE:
+          TIME_ID: A985BCFD-F501-B058-96AEA199D111FB8D
+          TIME_START: April, 12 2018 10:10:00
+          SUM_ATTENDEES: 22
+          FULL: false
+          TIME_END: April, 12 2018 11:00:00
+          TIMECAP:
+        - TIME_START_FORMATTED: 10:10 a.m. Thu, Apr 12, 2018
+          TIME_LOCATION_OVERRIDE:
+          TIME_END_FORMATTED: 11:00 a.m. Thu, Apr 12, 2018
+          TIME_NOTE:
+          TIME_ID: A985BCFD-F501-B058-96AEA199D111FB8D
+          TIME_START: April, 12 2018 10:10:00
+          SUM_ATTENDEES: 22
+          FULL: false
+          TIME_END: April, 12 2018 11:00:00
+          TIMECAP:
+        EVENT_ID: AD87530A-D89A-0E45-64BED13BF0B38A37
+        EVENT_EXTERNAL_URL:
+        EVENT_EXTERNAL_REGISTRATION_URL:
+      - EVENT_ADDITIONAL_FEE:
+        EVENT_DESCRIPTION: Representatives from admissions, advising and career development, along with faculty members and student ambassadors will give an overview of the College of Arts and Sciences (A&S), and answer questions about undergraduate life at Cornell.
+        EVENT_TITLE: A&S Information Session
+        EVENT_LOCATION: G10 Biotechnology Building
+        EVENT_TAGS:
+        - TAG_LABEL: A&S - College of Arts and Sciences
+          TAG_ID: 4432D6B5-9DAA-484F-1BA06B88A600DD13
+        - TAG_LABEL: A&S - College of Arts and Sciences
+          TAG_ID: 4432D6B5-9DAA-484F-1BA06B88A600DD13
+        EVENT_TIMES:
+        - TIME_START_FORMATTED: 10:10 a.m. Thu, Apr 12, 2018
+          TIME_LOCATION_OVERRIDE:
+          TIME_END_FORMATTED: 11:00 a.m. Thu, Apr 12, 2018
+          TIME_NOTE:
+          TIME_ID: A985BCFD-F501-B058-96AEA199D111FB8D
+          TIME_START: April, 12 2018 10:10:00
+          SUM_ATTENDEES: 22
+          FULL: false
+          TIME_END: April, 12 2018 11:00:00
+          TIMECAP:
+        - TIME_START_FORMATTED: 10:10 a.m. Thu, Apr 12, 2018
+          TIME_LOCATION_OVERRIDE:
+          TIME_END_FORMATTED: 11:00 a.m. Thu, Apr 12, 2018
+          TIME_NOTE:
+          TIME_ID: A985BCFD-F501-B058-96AEA199D111FB8D
+          TIME_START: April, 12 2018 10:10:00
+          SUM_ATTENDEES: 22
+          FULL: false
+          TIME_END: April, 12 2018 11:00:00
+          TIMECAP:
+        EVENT_ID: AD87530A-D89A-0E45-64BED13BF0B38A37
+        EVENT_EXTERNAL_URL:
+        EVENT_EXTERNAL_REGISTRATION_URL:
+  TagsResponse:
+    type: object
+    properties:
+      CATEGORIES:
+        type: array
+        items:
+          $ref: '#/definitions/Tag'
+      META:
+        $ref: '#/definitions/TagsResponse_META'
+    example:
+      META:
+        REQUESTTIME: 7:13 AM April 3, 2018
+      CATEGORIES:
+      - CAT_ID: 442C8728-B2C8-3474-0AA196853A695775
+        TAGS:
+        - TAG_LABEL: A&S - College of Arts and Sciences
+          TAG_ID: 4432D6B5-9DAA-484F-1BA06B88A600DD13
+        - TAG_LABEL: A&S - College of Arts and Sciences
+          TAG_ID: 4432D6B5-9DAA-484F-1BA06B88A600DD13
+        CAT_NAME: College/School
+      - CAT_ID: 442C8728-B2C8-3474-0AA196853A695775
+        TAGS:
+        - TAG_LABEL: A&S - College of Arts and Sciences
+          TAG_ID: 4432D6B5-9DAA-484F-1BA06B88A600DD13
+        - TAG_LABEL: A&S - College of Arts and Sciences
+          TAG_ID: 4432D6B5-9DAA-484F-1BA06B88A600DD13
+        CAT_NAME: College/School
+  Event:
+    type: object
+    properties:
+      EVENT_TAGS:
+        type: array
+        items:
+          $ref: '#/definitions/Event_EVENT_TAGS'
+      EVENT_EXTERNAL_REGISTRATION_URL:
+        type: string
+        example:
+      EVENT_TIMES:
+        type: array
+        items:
+          $ref: '#/definitions/Event_EVENT_TIMES'
+      EVENT_DESCRIPTION:
+        type: string
+        example: Representatives from admissions, advising and career development, along with faculty members and student ambassadors will give an overview of the College of Arts and Sciences (A&S), and answer questions about undergraduate life at Cornell.
+      EVENT_ID:
+        type: string
+        example: AD87530A-D89A-0E45-64BED13BF0B38A37
+      EVENT_ADDITIONAL_FEE:
+        type: string
+        example:
+      EVENT_EXTERNAL_URL:
+        type: string
+        example:
+      EVENT_TITLE:
+        type: string
+        example: A&S Information Session
+      EVENT_LOCATION:
+        type: string
+        example: G10 Biotechnology Building
+    example:
+      EVENT_ADDITIONAL_FEE:
+      EVENT_DESCRIPTION: Representatives from admissions, advising and career development, along with faculty members and student ambassadors will give an overview of the College of Arts and Sciences (A&S), and answer questions about undergraduate life at Cornell.
+      EVENT_TITLE: A&S Information Session
+      EVENT_LOCATION: G10 Biotechnology Building
+      EVENT_TAGS:
+      - TAG_LABEL: A&S - College of Arts and Sciences
+        TAG_ID: 4432D6B5-9DAA-484F-1BA06B88A600DD13
+      - TAG_LABEL: A&S - College of Arts and Sciences
+        TAG_ID: 4432D6B5-9DAA-484F-1BA06B88A600DD13
+      EVENT_TIMES:
+      - TIME_START_FORMATTED: 10:10 a.m. Thu, Apr 12, 2018
+        TIME_LOCATION_OVERRIDE:
+        TIME_END_FORMATTED: 11:00 a.m. Thu, Apr 12, 2018
+        TIME_NOTE:
+        TIME_ID: A985BCFD-F501-B058-96AEA199D111FB8D
+        TIME_START: April, 12 2018 10:10:00
+        SUM_ATTENDEES: 22
+        FULL: false
+        TIME_END: April, 12 2018 11:00:00
+        TIMECAP:
+      - TIME_START_FORMATTED: 10:10 a.m. Thu, Apr 12, 2018
+        TIME_LOCATION_OVERRIDE:
+        TIME_END_FORMATTED: 11:00 a.m. Thu, Apr 12, 2018
+        TIME_NOTE:
+        TIME_ID: A985BCFD-F501-B058-96AEA199D111FB8D
+        TIME_START: April, 12 2018 10:10:00
+        SUM_ATTENDEES: 22
+        FULL: false
+        TIME_END: April, 12 2018 11:00:00
+        TIMECAP:
+      EVENT_ID: AD87530A-D89A-0E45-64BED13BF0B38A37
+      EVENT_EXTERNAL_URL:
+      EVENT_EXTERNAL_REGISTRATION_URL:
+  Tag:
+    type: object
+    properties:
+      TAGS:
+        type: array
+        items:
+          $ref: '#/definitions/Event_EVENT_TAGS'
+      CAT_ID:
+        type: string
+        example: 442C8728-B2C8-3474-0AA196853A695775
+      CAT_NAME:
+        type: string
+        example: College/School
+    example:
+      CAT_ID: 442C8728-B2C8-3474-0AA196853A695775
+      TAGS:
+      - TAG_LABEL: A&S - College of Arts and Sciences
+        TAG_ID: 4432D6B5-9DAA-484F-1BA06B88A600DD13
+      - TAG_LABEL: A&S - College of Arts and Sciences
+        TAG_ID: 4432D6B5-9DAA-484F-1BA06B88A600DD13
+      CAT_NAME: College/School
+  EventsResponse_META:
+    properties:
+      EVENT_STATUS:
+        type: string
+        example: published
+      FILTER_TAGS:
+        type: string
+        example:
+      NUM_EVENTS:
+        type: integer
+        example: 64
+      REQUESTTIME:
+        type: string
+        example: 7:17 AM April 3, 2018
+    example:
+      REQUESTTIME: 7:17 AM April 3, 2018
+      EVENT_STATUS: published
+      FILTER_TAGS:
+      NUM_EVENTS: 64
+  TagsResponse_META:
+    properties:
+      REQUESTTIME:
+        type: string
+        example: 7:13 AM April 3, 2018
+    example:
+      REQUESTTIME: 7:13 AM April 3, 2018
+  Event_EVENT_TAGS:
+    properties:
+      TAG_ID:
+        type: string
+        example: 4432D6B5-9DAA-484F-1BA06B88A600DD13
+      TAG_LABEL:
+        type: string
+        example: A&S - College of Arts and Sciences
+    example:
+      TAG_LABEL: A&S - College of Arts and Sciences
+      TAG_ID: 4432D6B5-9DAA-484F-1BA06B88A600DD13
+  Event_EVENT_TIMES:
+    properties:
+      TIME_START:
+        type: string
+        example: April, 12 2018 10:10:00
+      TIME_START_FORMATTED:
+        type: string
+        example: 10:10 a.m. Thu, Apr 12, 2018
+      TIME_ID:
+        type: string
+        example: A985BCFD-F501-B058-96AEA199D111FB8D
+      FULL:
+        type: boolean
+        example: false
+      SUM_ATTENDEES:
+        type: integer
+        example: 22
+      TIMECAP:
+        type: string
+        example:
+      TIME_LOCATION_OVERRIDE:
+        type: string
+        example:
+      TIME_END:
+        type: string
+        example: April, 12 2018 11:00:00
+      TIME_END_FORMATTED:
+        type: string
+        example: 11:00 a.m. Thu, Apr 12, 2018
+      TIME_NOTE:
+        type: string
+        example:
+    example:
+      TIME_START_FORMATTED: 10:10 a.m. Thu, Apr 12, 2018
+      TIME_LOCATION_OVERRIDE:
+      TIME_END_FORMATTED: 11:00 a.m. Thu, Apr 12, 2018
+      TIME_NOTE:
+      TIME_ID: A985BCFD-F501-B058-96AEA199D111FB8D
+      TIME_START: April, 12 2018 10:10:00
+      SUM_ATTENDEES: 22
+      FULL: false
+      TIME_END: April, 12 2018 11:00:00
+      TIMECAP:
