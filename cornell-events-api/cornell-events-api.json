@@ -1,0 +1,1029 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "A public API for retrieving official events at Cornell University",
+    "version" : "0.1",
+    "title" : "Cornell Events",
+    "contact" : {
+      "name" : "Cornell Open Data Initiative",
+      "url" : "https://codi.engineering.cornell.edu",
+      "email" : "codi@cornellappdev.com"
+    }
+  },
+  "host" : "events.cornell.edu",
+  "basePath" : "/api/2",
+  "schemes" : [ "https" ],
+  "security" : [ {
+    "UserSecurity" : [ ]
+  } ],
+  "paths" : {
+    "/events" : {
+      "get" : {
+        "tags" : [ "events" ],
+        "summary" : "Get Cornell Events",
+        "description" : "Return the events on the Cornell website given the parameters",
+        "parameters" : [ {
+          "name" : "featured",
+          "in" : "query",
+          "description" : "Whether to show featured events or not",
+          "required" : false,
+          "type" : "boolean",
+          "default" : true
+        }, {
+          "name" : "days",
+          "in" : "query",
+          "description" : "Number of days ahead to look for events",
+          "required" : false,
+          "type" : "integer",
+          "default" : 7
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "A JSON of events",
+            "schema" : {
+              "$ref" : "#/definitions/EventsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/events/search" : {
+      "get" : {
+        "tags" : [ "search" ],
+        "summary" : "Search Cornell Events",
+        "description" : "Return the evens on the Cornell website matching the input query",
+        "parameters" : [ {
+          "name" : "days",
+          "in" : "query",
+          "description" : "Number of days ahead to look for events",
+          "required" : false,
+          "type" : "integer",
+          "default" : 7
+        }, {
+          "name" : "distinct",
+          "in" : "query",
+          "description" : "Whether to only show distinct events",
+          "required" : false,
+          "type" : "boolean",
+          "default" : true
+        }, {
+          "name" : "search",
+          "in" : "query",
+          "description" : "Input query to search events for",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "A JSON of events",
+            "schema" : {
+              "$ref" : "#/definitions/EventsResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "UserSecurity" : {
+      "description" : "Security for the API key",
+      "type" : "apiKey",
+      "name" : "api_key",
+      "in" : "query"
+    }
+  },
+  "definitions" : {
+    "EventsResponse" : {
+      "type" : "object",
+      "properties" : {
+        "events" : {
+          "$ref" : "#/definitions/EventsResponse_events"
+        }
+      },
+      "example" : {
+        "events" : {
+          "date" : {
+            "last" : "2018-05-03",
+            "first" : "2018-04-02"
+          },
+          "page" : {
+            "current" : 1,
+            "total" : 0,
+            "size" : 10
+          },
+          "events" : [ {
+            "featured" : false,
+            "keywords" : [ ],
+            "localist_ics_url" : "",
+            "id" : 1138971,
+            "photo_url" : "",
+            "urlname" : "4-h_exhibit_creation_day",
+            "detail_views" : 14,
+            "venue_id" : "null",
+            "recurring" : false,
+            "ticket_cost" : "null",
+            "custom_fields" : {
+              "contact_name" : "Kelly Adams",
+              "contact_phone" : "607-772-8953",
+              "contact_email" : "kea32@cornell.edu"
+            },
+            "room_number" : "null",
+            "description_text" : "",
+            "ticket_url" : "",
+            "created_by" : "null",
+            "venue_url" : "",
+            "facebook_id" : "null",
+            "tags" : [ ],
+            "location_name" : "",
+            "allows_attendance" : true,
+            "directions" : "",
+            "user_id" : "null",
+            "updated_by" : "null",
+            "first_date" : "2018-01-27",
+            "city_id" : "null",
+            "private" : false,
+            "photo_id" : 214651,
+            "rejected" : false,
+            "localist_url" : "",
+            "created_at" : "2017-12-20T03:28:33-05:00",
+            "description" : "",
+            "allows_reviews" : true,
+            "title" : "4-H Exhibit Creation Day",
+            "last_date" : "2018-04-02",
+            "geo" : {
+              "zip" : "10935",
+              "country" : "US",
+              "city" : "Binghamton",
+              "street" : "840 Front Street",
+              "latitude" : "42.128713",
+              "state" : "NY",
+              "longitude" : "-75.905503"
+            },
+            "updated_at" : "2018-04-02T08:06:32-04:00",
+            "school_id" : 10,
+            "neighborhood_id" : "null",
+            "free" : true,
+            "hashtag" : "null",
+            "address" : "",
+            "verified" : true,
+            "event_instances" : [ {
+              "event_instance" : {
+                "event_id" : 1138971,
+                "start" : "2018-04-02T00:00:00-04:00",
+                "all_day" : true,
+                "ranking" : 0,
+                "end" : "null",
+                "id" : 3451946
+              }
+            }, {
+              "event_instance" : {
+                "event_id" : 1138971,
+                "start" : "2018-04-02T00:00:00-04:00",
+                "all_day" : true,
+                "ranking" : 0,
+                "end" : "null",
+                "id" : 3451946
+              }
+            } ],
+            "groups" : [ {
+              "name" : "Cooperative Extension",
+              "id" : 5506
+            }, {
+              "name" : "Cooperative Extension",
+              "id" : 5506
+            } ],
+            "sponsored" : false,
+            "filters" : {
+              "departments" : [ {
+                "name" : "CCE Broome",
+                "id" : 30022
+              }, {
+                "name" : "CCE Broome",
+                "id" : 30022
+              } ]
+            },
+            "url" : "",
+            "campus_id" : "null",
+            "location" : ""
+          }, {
+            "featured" : false,
+            "keywords" : [ ],
+            "localist_ics_url" : "",
+            "id" : 1138971,
+            "photo_url" : "",
+            "urlname" : "4-h_exhibit_creation_day",
+            "detail_views" : 14,
+            "venue_id" : "null",
+            "recurring" : false,
+            "ticket_cost" : "null",
+            "custom_fields" : {
+              "contact_name" : "Kelly Adams",
+              "contact_phone" : "607-772-8953",
+              "contact_email" : "kea32@cornell.edu"
+            },
+            "room_number" : "null",
+            "description_text" : "",
+            "ticket_url" : "",
+            "created_by" : "null",
+            "venue_url" : "",
+            "facebook_id" : "null",
+            "tags" : [ ],
+            "location_name" : "",
+            "allows_attendance" : true,
+            "directions" : "",
+            "user_id" : "null",
+            "updated_by" : "null",
+            "first_date" : "2018-01-27",
+            "city_id" : "null",
+            "private" : false,
+            "photo_id" : 214651,
+            "rejected" : false,
+            "localist_url" : "",
+            "created_at" : "2017-12-20T03:28:33-05:00",
+            "description" : "",
+            "allows_reviews" : true,
+            "title" : "4-H Exhibit Creation Day",
+            "last_date" : "2018-04-02",
+            "geo" : {
+              "zip" : "10935",
+              "country" : "US",
+              "city" : "Binghamton",
+              "street" : "840 Front Street",
+              "latitude" : "42.128713",
+              "state" : "NY",
+              "longitude" : "-75.905503"
+            },
+            "updated_at" : "2018-04-02T08:06:32-04:00",
+            "school_id" : 10,
+            "neighborhood_id" : "null",
+            "free" : true,
+            "hashtag" : "null",
+            "address" : "",
+            "verified" : true,
+            "event_instances" : [ {
+              "event_instance" : {
+                "event_id" : 1138971,
+                "start" : "2018-04-02T00:00:00-04:00",
+                "all_day" : true,
+                "ranking" : 0,
+                "end" : "null",
+                "id" : 3451946
+              }
+            }, {
+              "event_instance" : {
+                "event_id" : 1138971,
+                "start" : "2018-04-02T00:00:00-04:00",
+                "all_day" : true,
+                "ranking" : 0,
+                "end" : "null",
+                "id" : 3451946
+              }
+            } ],
+            "groups" : [ {
+              "name" : "Cooperative Extension",
+              "id" : 5506
+            }, {
+              "name" : "Cooperative Extension",
+              "id" : 5506
+            } ],
+            "sponsored" : false,
+            "filters" : {
+              "departments" : [ {
+                "name" : "CCE Broome",
+                "id" : 30022
+              }, {
+                "name" : "CCE Broome",
+                "id" : 30022
+              } ]
+            },
+            "url" : "",
+            "campus_id" : "null",
+            "location" : ""
+          } ]
+        }
+      }
+    },
+    "Event" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "example" : 1138971
+        },
+        "title" : {
+          "type" : "string",
+          "example" : "4-H Exhibit Creation Day"
+        },
+        "url" : {
+          "type" : "string",
+          "example" : ""
+        },
+        "updated_at" : {
+          "type" : "string",
+          "example" : "2018-04-02T08:06:32-04:00"
+        },
+        "created_at" : {
+          "type" : "string",
+          "example" : "2017-12-20T03:28:33-05:00"
+        },
+        "facebook_id" : {
+          "type" : "integer",
+          "example" : "null"
+        },
+        "first_date" : {
+          "type" : "string",
+          "example" : "2018-01-27"
+        },
+        "last_date" : {
+          "type" : "string",
+          "example" : "2018-04-02"
+        },
+        "hashtag" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "urlname" : {
+          "type" : "string",
+          "example" : "4-h_exhibit_creation_day"
+        },
+        "user_id" : {
+          "type" : "integer",
+          "example" : "null"
+        },
+        "directions" : {
+          "type" : "string",
+          "example" : ""
+        },
+        "allows_reviews" : {
+          "type" : "boolean",
+          "example" : true
+        },
+        "allows_attendance" : {
+          "type" : "boolean",
+          "example" : true
+        },
+        "location" : {
+          "type" : "string",
+          "example" : ""
+        },
+        "room_number" : {
+          "type" : "integer",
+          "example" : "null"
+        },
+        "location_name" : {
+          "type" : "string",
+          "example" : ""
+        },
+        "created_by" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "updated_by" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "city_id" : {
+          "type" : "integer",
+          "example" : "null"
+        },
+        "neighborhood_id" : {
+          "type" : "integer",
+          "example" : "null"
+        },
+        "school_id" : {
+          "type" : "integer",
+          "example" : 10
+        },
+        "campus_id" : {
+          "type" : "integer",
+          "example" : "null"
+        },
+        "recurring" : {
+          "type" : "boolean",
+          "example" : false
+        },
+        "free" : {
+          "type" : "boolean",
+          "example" : true
+        },
+        "private" : {
+          "type" : "boolean",
+          "example" : false
+        },
+        "verified" : {
+          "type" : "boolean",
+          "example" : true
+        },
+        "rejected" : {
+          "type" : "boolean",
+          "example" : false
+        },
+        "sponsored" : {
+          "type" : "boolean",
+          "example" : false
+        },
+        "venue_id" : {
+          "type" : "integer",
+          "example" : "null"
+        },
+        "ticket_url" : {
+          "type" : "string",
+          "example" : ""
+        },
+        "ticket_cost" : {
+          "type" : "integer",
+          "example" : "null"
+        },
+        "keywords" : {
+          "type" : "array",
+          "example" : [ ],
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "tags" : {
+          "type" : "array",
+          "example" : [ ],
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "description_text" : {
+          "type" : "string",
+          "example" : ""
+        },
+        "photo_id" : {
+          "type" : "integer",
+          "example" : 214651
+        },
+        "detail_views" : {
+          "type" : "integer",
+          "example" : 14
+        },
+        "event_instances" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Event_event_instances"
+          }
+        },
+        "address" : {
+          "type" : "string",
+          "example" : ""
+        },
+        "description" : {
+          "type" : "string",
+          "example" : ""
+        },
+        "featured" : {
+          "type" : "boolean",
+          "example" : false
+        },
+        "geo" : {
+          "$ref" : "#/definitions/Event_geo"
+        },
+        "filters" : {
+          "$ref" : "#/definitions/Event_filters"
+        },
+        "custom_fields" : {
+          "$ref" : "#/definitions/Event_custom_fields"
+        },
+        "localist_url" : {
+          "type" : "string",
+          "example" : ""
+        },
+        "localist_ics_url" : {
+          "type" : "string",
+          "example" : ""
+        },
+        "photo_url" : {
+          "type" : "string",
+          "example" : ""
+        },
+        "venue_url" : {
+          "type" : "string",
+          "example" : ""
+        },
+        "groups" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Event_groups"
+          }
+        }
+      },
+      "example" : {
+        "featured" : false,
+        "keywords" : [ ],
+        "localist_ics_url" : "",
+        "id" : 1138971,
+        "photo_url" : "",
+        "urlname" : "4-h_exhibit_creation_day",
+        "detail_views" : 14,
+        "venue_id" : "null",
+        "recurring" : false,
+        "ticket_cost" : "null",
+        "custom_fields" : {
+          "contact_name" : "Kelly Adams",
+          "contact_phone" : "607-772-8953",
+          "contact_email" : "kea32@cornell.edu"
+        },
+        "room_number" : "null",
+        "description_text" : "",
+        "ticket_url" : "",
+        "created_by" : "null",
+        "venue_url" : "",
+        "facebook_id" : "null",
+        "tags" : [ ],
+        "location_name" : "",
+        "allows_attendance" : true,
+        "directions" : "",
+        "user_id" : "null",
+        "updated_by" : "null",
+        "first_date" : "2018-01-27",
+        "city_id" : "null",
+        "private" : false,
+        "photo_id" : 214651,
+        "rejected" : false,
+        "localist_url" : "",
+        "created_at" : "2017-12-20T03:28:33-05:00",
+        "description" : "",
+        "allows_reviews" : true,
+        "title" : "4-H Exhibit Creation Day",
+        "last_date" : "2018-04-02",
+        "geo" : {
+          "zip" : "10935",
+          "country" : "US",
+          "city" : "Binghamton",
+          "street" : "840 Front Street",
+          "latitude" : "42.128713",
+          "state" : "NY",
+          "longitude" : "-75.905503"
+        },
+        "updated_at" : "2018-04-02T08:06:32-04:00",
+        "school_id" : 10,
+        "neighborhood_id" : "null",
+        "free" : true,
+        "hashtag" : "null",
+        "address" : "",
+        "verified" : true,
+        "event_instances" : [ {
+          "event_instance" : {
+            "event_id" : 1138971,
+            "start" : "2018-04-02T00:00:00-04:00",
+            "all_day" : true,
+            "ranking" : 0,
+            "end" : "null",
+            "id" : 3451946
+          }
+        }, {
+          "event_instance" : {
+            "event_id" : 1138971,
+            "start" : "2018-04-02T00:00:00-04:00",
+            "all_day" : true,
+            "ranking" : 0,
+            "end" : "null",
+            "id" : 3451946
+          }
+        } ],
+        "groups" : [ {
+          "name" : "Cooperative Extension",
+          "id" : 5506
+        }, {
+          "name" : "Cooperative Extension",
+          "id" : 5506
+        } ],
+        "sponsored" : false,
+        "filters" : {
+          "departments" : [ {
+            "name" : "CCE Broome",
+            "id" : 30022
+          }, {
+            "name" : "CCE Broome",
+            "id" : 30022
+          } ]
+        },
+        "url" : "",
+        "campus_id" : "null",
+        "location" : ""
+      }
+    },
+    "EventsResponse_events_page" : {
+      "properties" : {
+        "current" : {
+          "type" : "integer",
+          "example" : 1
+        },
+        "size" : {
+          "type" : "integer",
+          "example" : 10
+        },
+        "total" : {
+          "type" : "integer",
+          "example" : 0
+        }
+      },
+      "example" : {
+        "current" : 1,
+        "total" : 0,
+        "size" : 10
+      }
+    },
+    "EventsResponse_events_date" : {
+      "properties" : {
+        "first" : {
+          "type" : "string",
+          "example" : "2018-04-02"
+        },
+        "last" : {
+          "type" : "string",
+          "example" : "2018-05-03"
+        }
+      },
+      "example" : {
+        "last" : "2018-05-03",
+        "first" : "2018-04-02"
+      }
+    },
+    "EventsResponse_events" : {
+      "properties" : {
+        "events" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Event"
+          }
+        },
+        "page" : {
+          "$ref" : "#/definitions/EventsResponse_events_page"
+        },
+        "date" : {
+          "$ref" : "#/definitions/EventsResponse_events_date"
+        }
+      },
+      "example" : {
+        "date" : {
+          "last" : "2018-05-03",
+          "first" : "2018-04-02"
+        },
+        "page" : {
+          "current" : 1,
+          "total" : 0,
+          "size" : 10
+        },
+        "events" : [ {
+          "featured" : false,
+          "keywords" : [ ],
+          "localist_ics_url" : "",
+          "id" : 1138971,
+          "photo_url" : "",
+          "urlname" : "4-h_exhibit_creation_day",
+          "detail_views" : 14,
+          "venue_id" : "null",
+          "recurring" : false,
+          "ticket_cost" : "null",
+          "custom_fields" : {
+            "contact_name" : "Kelly Adams",
+            "contact_phone" : "607-772-8953",
+            "contact_email" : "kea32@cornell.edu"
+          },
+          "room_number" : "null",
+          "description_text" : "",
+          "ticket_url" : "",
+          "created_by" : "null",
+          "venue_url" : "",
+          "facebook_id" : "null",
+          "tags" : [ ],
+          "location_name" : "",
+          "allows_attendance" : true,
+          "directions" : "",
+          "user_id" : "null",
+          "updated_by" : "null",
+          "first_date" : "2018-01-27",
+          "city_id" : "null",
+          "private" : false,
+          "photo_id" : 214651,
+          "rejected" : false,
+          "localist_url" : "",
+          "created_at" : "2017-12-20T03:28:33-05:00",
+          "description" : "",
+          "allows_reviews" : true,
+          "title" : "4-H Exhibit Creation Day",
+          "last_date" : "2018-04-02",
+          "geo" : {
+            "zip" : "10935",
+            "country" : "US",
+            "city" : "Binghamton",
+            "street" : "840 Front Street",
+            "latitude" : "42.128713",
+            "state" : "NY",
+            "longitude" : "-75.905503"
+          },
+          "updated_at" : "2018-04-02T08:06:32-04:00",
+          "school_id" : 10,
+          "neighborhood_id" : "null",
+          "free" : true,
+          "hashtag" : "null",
+          "address" : "",
+          "verified" : true,
+          "event_instances" : [ {
+            "event_instance" : {
+              "event_id" : 1138971,
+              "start" : "2018-04-02T00:00:00-04:00",
+              "all_day" : true,
+              "ranking" : 0,
+              "end" : "null",
+              "id" : 3451946
+            }
+          }, {
+            "event_instance" : {
+              "event_id" : 1138971,
+              "start" : "2018-04-02T00:00:00-04:00",
+              "all_day" : true,
+              "ranking" : 0,
+              "end" : "null",
+              "id" : 3451946
+            }
+          } ],
+          "groups" : [ {
+            "name" : "Cooperative Extension",
+            "id" : 5506
+          }, {
+            "name" : "Cooperative Extension",
+            "id" : 5506
+          } ],
+          "sponsored" : false,
+          "filters" : {
+            "departments" : [ {
+              "name" : "CCE Broome",
+              "id" : 30022
+            }, {
+              "name" : "CCE Broome",
+              "id" : 30022
+            } ]
+          },
+          "url" : "",
+          "campus_id" : "null",
+          "location" : ""
+        }, {
+          "featured" : false,
+          "keywords" : [ ],
+          "localist_ics_url" : "",
+          "id" : 1138971,
+          "photo_url" : "",
+          "urlname" : "4-h_exhibit_creation_day",
+          "detail_views" : 14,
+          "venue_id" : "null",
+          "recurring" : false,
+          "ticket_cost" : "null",
+          "custom_fields" : {
+            "contact_name" : "Kelly Adams",
+            "contact_phone" : "607-772-8953",
+            "contact_email" : "kea32@cornell.edu"
+          },
+          "room_number" : "null",
+          "description_text" : "",
+          "ticket_url" : "",
+          "created_by" : "null",
+          "venue_url" : "",
+          "facebook_id" : "null",
+          "tags" : [ ],
+          "location_name" : "",
+          "allows_attendance" : true,
+          "directions" : "",
+          "user_id" : "null",
+          "updated_by" : "null",
+          "first_date" : "2018-01-27",
+          "city_id" : "null",
+          "private" : false,
+          "photo_id" : 214651,
+          "rejected" : false,
+          "localist_url" : "",
+          "created_at" : "2017-12-20T03:28:33-05:00",
+          "description" : "",
+          "allows_reviews" : true,
+          "title" : "4-H Exhibit Creation Day",
+          "last_date" : "2018-04-02",
+          "geo" : {
+            "zip" : "10935",
+            "country" : "US",
+            "city" : "Binghamton",
+            "street" : "840 Front Street",
+            "latitude" : "42.128713",
+            "state" : "NY",
+            "longitude" : "-75.905503"
+          },
+          "updated_at" : "2018-04-02T08:06:32-04:00",
+          "school_id" : 10,
+          "neighborhood_id" : "null",
+          "free" : true,
+          "hashtag" : "null",
+          "address" : "",
+          "verified" : true,
+          "event_instances" : [ {
+            "event_instance" : {
+              "event_id" : 1138971,
+              "start" : "2018-04-02T00:00:00-04:00",
+              "all_day" : true,
+              "ranking" : 0,
+              "end" : "null",
+              "id" : 3451946
+            }
+          }, {
+            "event_instance" : {
+              "event_id" : 1138971,
+              "start" : "2018-04-02T00:00:00-04:00",
+              "all_day" : true,
+              "ranking" : 0,
+              "end" : "null",
+              "id" : 3451946
+            }
+          } ],
+          "groups" : [ {
+            "name" : "Cooperative Extension",
+            "id" : 5506
+          }, {
+            "name" : "Cooperative Extension",
+            "id" : 5506
+          } ],
+          "sponsored" : false,
+          "filters" : {
+            "departments" : [ {
+              "name" : "CCE Broome",
+              "id" : 30022
+            }, {
+              "name" : "CCE Broome",
+              "id" : 30022
+            } ]
+          },
+          "url" : "",
+          "campus_id" : "null",
+          "location" : ""
+        } ]
+      }
+    },
+    "Event_event_instance" : {
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "example" : 3451946
+        },
+        "ranking" : {
+          "type" : "integer",
+          "example" : 0
+        },
+        "event_id" : {
+          "type" : "integer",
+          "example" : 1138971
+        },
+        "start" : {
+          "type" : "string",
+          "example" : "2018-04-02T00:00:00-04:00"
+        },
+        "end" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "all_day" : {
+          "type" : "boolean",
+          "example" : true
+        }
+      },
+      "example" : {
+        "event_id" : 1138971,
+        "start" : "2018-04-02T00:00:00-04:00",
+        "all_day" : true,
+        "ranking" : 0,
+        "end" : "null",
+        "id" : 3451946
+      }
+    },
+    "Event_event_instances" : {
+      "properties" : {
+        "event_instance" : {
+          "$ref" : "#/definitions/Event_event_instance"
+        }
+      },
+      "example" : {
+        "event_instance" : {
+          "event_id" : 1138971,
+          "start" : "2018-04-02T00:00:00-04:00",
+          "all_day" : true,
+          "ranking" : 0,
+          "end" : "null",
+          "id" : 3451946
+        }
+      }
+    },
+    "Event_geo" : {
+      "properties" : {
+        "latitude" : {
+          "type" : "string",
+          "example" : "42.128713"
+        },
+        "longitude" : {
+          "type" : "string",
+          "example" : "-75.905503"
+        },
+        "street" : {
+          "type" : "string",
+          "example" : "840 Front Street"
+        },
+        "city" : {
+          "type" : "string",
+          "example" : "Binghamton"
+        },
+        "state" : {
+          "type" : "string",
+          "example" : "NY"
+        },
+        "country" : {
+          "type" : "string",
+          "example" : "US"
+        },
+        "zip" : {
+          "type" : "string",
+          "example" : "10935"
+        }
+      },
+      "example" : {
+        "zip" : "10935",
+        "country" : "US",
+        "city" : "Binghamton",
+        "street" : "840 Front Street",
+        "latitude" : "42.128713",
+        "state" : "NY",
+        "longitude" : "-75.905503"
+      }
+    },
+    "Event_filters_departments" : {
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "example" : "CCE Broome"
+        },
+        "id" : {
+          "type" : "integer",
+          "example" : 30022
+        }
+      },
+      "example" : {
+        "name" : "CCE Broome",
+        "id" : 30022
+      }
+    },
+    "Event_filters" : {
+      "properties" : {
+        "departments" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Event_filters_departments"
+          }
+        }
+      },
+      "example" : {
+        "departments" : [ {
+          "name" : "CCE Broome",
+          "id" : 30022
+        }, {
+          "name" : "CCE Broome",
+          "id" : 30022
+        } ]
+      }
+    },
+    "Event_custom_fields" : {
+      "properties" : {
+        "contact_email" : {
+          "type" : "string",
+          "example" : "kea32@cornell.edu"
+        },
+        "contact_name" : {
+          "type" : "string",
+          "example" : "Kelly Adams"
+        },
+        "contact_phone" : {
+          "type" : "string",
+          "example" : "607-772-8953"
+        }
+      },
+      "example" : {
+        "contact_name" : "Kelly Adams",
+        "contact_phone" : "607-772-8953",
+        "contact_email" : "kea32@cornell.edu"
+      }
+    },
+    "Event_groups" : {
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "example" : 5506
+        },
+        "name" : {
+          "type" : "string",
+          "example" : "Cooperative Extension"
+        }
+      },
+      "example" : {
+        "name" : "Cooperative Extension",
+        "id" : 5506
+      }
+    }
+  }
+}
