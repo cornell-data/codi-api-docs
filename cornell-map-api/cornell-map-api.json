@@ -38,9 +38,10 @@
         "parameters" : [ {
           "name" : "layer",
           "in" : "query",
-          "description" : "Available Layers:\n - AllGender\n - BigRedBikes\n - Bikes\n - Blue\n - Carshare\n - Charging\n - FeaturedEvents\n - FoodServices\n - Lactation\n - Parkmobile\n - Sustainability\n - TCAT\n - TodayEvents\n - Tour\n - Water",
+          "description" : "Possible location categories",
           "required" : true,
-          "type" : "string"
+          "type" : "string",
+          "enum" : [ "AllGender", "BigRedBikes", "Bikes", "Blue", "Carshare", "Charging", "FeaturedEvents", "FoodServices", "Lactation", "Parkmobile", "Sustainability", "TCAT", "TodayEvents", "Tour", "Water" ]
         }, {
           "name" : "clearCache",
           "in" : "query",
