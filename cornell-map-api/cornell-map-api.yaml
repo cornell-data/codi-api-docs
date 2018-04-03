@@ -1,0 +1,197 @@
+---
+swagger: 2.0
+info:
+  description: A public API for retrieving Cornell University's map information
+  version: 0.1
+  title: Cornell Map
+  contact:
+    name: Cornell Open Data Initiative
+    url: https://codi.engineering.cornell.edu
+    email: codi@cornellappdev.com
+host: www.cornell.edu
+basePath: /about/maps
+schemes:
+- https
+paths:
+  /locations.cfm:
+    get:
+      summary: Get Cornell Locations
+      description: Return information about all available Cornell locations
+      parameters:
+      - name: returnJSON
+        in: query
+        description: 1 if JSON should be returned
+        required: true
+        type: integer
+        default: 1
+        enum:
+        - 0
+        - 1
+      responses:
+        200:
+          description: A JSON of Cornell locations
+          schema:
+            $ref: '#/definitions/LocationsResponse'
+  /overlay-items.cfm:
+    get:
+      summary: Get Cornell Map Items
+      description: Return all location information of the specified layer
+      parameters:
+      - name: layer
+        in: query
+        description: |-
+          `AllGender` - All Gender Bathrooms
+           `BigRedBikes` - Bike Share Stations
+           `Bikes` - Bike Racks
+           `Blue` - Blue Lights
+           `Carshare` - Ithaca Carshare
+           `Charging` - Electric Car Charging Stations
+           `FeaturedEvents` - Featured Cornell Events
+           `FoodServices` - Eateries (i.e. dining halls, cafes)
+           `Lactation` - Lactation rooms
+           `Overlays` - Miscellaneous (information booths, campus-to-campus stops, diaper changing stations, wellness paths)
+           `Parkmobile` - Pay-by-cell Parking
+           `Sustainability` - Sustainable Centers and Institutes
+           `TCAT` - TCAT Bus Stops
+           `TodayEvents` - Today's Cornell Events
+           `Tour` - Virtual Tour Points
+           `Water` - Take Back The Tap
+        required: true
+        type: string
+        default: AllGender
+        enum:
+        - AllGender
+        - BigRedBikes
+        - Bikes
+        - Blue
+        - Carshare
+        - Charging
+        - FeaturedEvents
+        - FoodServices
+        - Lactation
+        - Overlays
+        - Parkmobile
+        - Sustainability
+        - TCAT
+        - TodayEvents
+        - Tour
+        - Water
+      - name: clearCache
+        in: query
+        description: 1 if cache should be cleared
+        required: true
+        type: integer
+        default: 1
+        enum:
+        - 0
+        - 1
+      responses:
+        200:
+          description: A JSON of Cornell locations matching the specified layer
+          schema:
+            $ref: '#/definitions/ItemsResponse'
+definitions:
+  LocationsResponse:
+    type: object
+    properties:
+      locations:
+        type: array
+        items:
+          $ref: '#/definitions/Location'
+    example:
+      locations:
+      - Address:
+        Lng: -76.48188888888889
+        AKA:
+        ImageURL: http://images-cf.localist.com/photos/16496/huge/3d1823d5d412fbd89b226723466e404d9f4fa43b.jpg
+        Folder: Plantations
+        Lat: 42.44780277777777
+        Notes: Plantations
+        Name: A. D. White Gardens
+      - Address:
+        Lng: -76.48188888888889
+        AKA:
+        ImageURL: http://images-cf.localist.com/photos/16496/huge/3d1823d5d412fbd89b226723466e404d9f4fa43b.jpg
+        Folder: Plantations
+        Lat: 42.44780277777777
+        Notes: Plantations
+        Name: A. D. White Gardens
+  ItemsResponse:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/Item'
+    example:
+      items:
+      - Lng: -76.4789259
+        Folder: BigRedBikes
+        Lat: 42.4534402
+        Notes: Balch Hall
+        Name: Balch Hall
+      - Lng: -76.4789259
+        Folder: BigRedBikes
+        Lat: 42.4534402
+        Notes: Balch Hall
+        Name: Balch Hall
+  Location:
+    type: object
+    properties:
+      Name:
+        type: string
+        example: A. D. White Gardens
+      Folder:
+        type: string
+        example: Plantations
+      ImageURL:
+        type: string
+        example: http://images-cf.localist.com/photos/16496/huge/3d1823d5d412fbd89b226723466e404d9f4fa43b.jpg
+      Address:
+        type: string
+        example:
+      Lat:
+        type: string
+        example: 42.44780277777777
+      Lng:
+        type: string
+        example: -76.48188888888889
+      Notes:
+        type: string
+        example: Plantations
+      AKA:
+        type: string
+        example:
+    example:
+      Address:
+      Lng: -76.48188888888889
+      AKA:
+      ImageURL: http://images-cf.localist.com/photos/16496/huge/3d1823d5d412fbd89b226723466e404d9f4fa43b.jpg
+      Folder: Plantations
+      Lat: 42.44780277777777
+      Notes: Plantations
+      Name: A. D. White Gardens
+  Item:
+    type: object
+    properties:
+      Name:
+        type: string
+        example: Balch Hall
+      Lat:
+        type: string
+        example: 42.4534402
+      Lng:
+        type: string
+        example: -76.4789259
+      Folder:
+        type: string
+        example: BigRedBikes
+      Notes:
+        type: string
+        example: Balch Hall
+    example:
+      Lng: -76.4789259
+      Folder: BigRedBikes
+      Lat: 42.4534402
+      Notes: Balch Hall
+      Name: Balch Hall
