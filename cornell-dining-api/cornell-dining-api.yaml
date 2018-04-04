@@ -12,6 +12,9 @@ host: now.dining.cornell.edu
 basePath: /api/1.0
 schemes:
 - https
+produces:
+- application/xml
+- application/json
 paths:
   /config/pages.json:
     get:
