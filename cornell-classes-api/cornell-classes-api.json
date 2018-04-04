@@ -17,7 +17,7 @@
     "/config/rosters.json" : {
       "get" : {
         "tags" : [ "config" ],
-        "summary" : "Get Cornell available rosters",
+        "summary" : "Get available Cornell rosters",
         "description" : "Return information about all available Cornell rosters",
         "parameters" : [ ],
         "responses" : {
@@ -121,8 +121,8 @@
     "/search/classes.json" : {
       "get" : {
         "tags" : [ "search" ],
-        "summary" : "Get scheduled classes matching input query",
-        "description" : "Return all scheduled classes in the specified roster and subject matching the input query",
+        "summary" : "Get all classes matching input query",
+        "description" : "Return all classes in the specified roster and subject that match the input query",
         "parameters" : [ {
           "name" : "roster",
           "in" : "query",
