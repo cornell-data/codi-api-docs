@@ -1,113 +1,1052 @@
 ---
-swagger: "2.0"
+swagger: 2.0
 info:
-  description: "A public API for retrieving classes at Cornell University"
-  version: "0.1"
-  title: "Cornell Classes"
+  description: A public API for retrieving classes at Cornell University
+  version: 0.1
+  title: Cornell Classes
   contact:
-    name: "Cornell Open Data Initiative"
-    url: "https://codi.engineering.cornell.edu"
-    email: "codi@cornellappdev.com"
-host: "classes.cornell.edu"
-basePath: "/api/2.0"
+    name: Cornell Open Data Initiative
+    url: https://codi.engineering.cornell.edu
+    email: codi@cornellappdev.com
+host: classes.cornell.edu
+basePath: /api/2.0
 schemes:
-- "https"
+- https
 paths:
   /config/rosters.json:
     get:
-      summary: "Get Cornell available rosters"
+      tags:
+      - config
+      summary: Get Cornell available rosters
+      description: Return information about all available Cornell rosters
       parameters: []
       responses:
         200:
-          description: "A JSON of rosters"
+          description: A JSON of rosters
+          schema:
+            $ref: '#/definitions/RostersResponse'
   /config/acadCareers.json:
     get:
-      summary: "Get available academic careers for a roster"
+      tags:
+      - config
+      summary: Get available academic careers for a roster
+      description: Return all available academic careers for a roster. Academic careers refer to student type (i.e. Undergraduate) or study type (i.e. Graduate Management).
       parameters:
-      - name: "roster"
-        in: "query"
-        description: "Roster semester & year (i.e. FA14, SP16)"
+      - name: roster
+        in: query
+        description: Roster semester & year (i.e. FA14, SP15)
         required: true
-        type: "string"
+        type: string
       responses:
         200:
-          description: "A JSON of academic careers"
+          description: A JSON of academic careers
+          schema:
+            $ref: '#/definitions/AcadCareersResponse'
   /config/acadGroups.json:
     get:
-      summary: "Get available academic groups for a roster"
+      tags:
+      - config
+      summary: Get available academic groups for a roster
+      description: Return all available academic groups for a roster. Academic groups refer to college type (i.e. Engineering) or study type (i.e. Graduate Management).
       parameters:
-      - name: "roster"
-        in: "query"
-        description: "Roster semester & year (i.e. FA14, SP16)"
+      - name: roster
+        in: query
+        description: Roster semester & year (i.e. FA14, SP15)
         required: true
-        type: "string"
+        type: string
       responses:
         200:
-          description: "A JSON of academic groups"
+          description: A JSON of academic groups
+          schema:
+            $ref: '#/definitions/AcadGroupsResponse'
   /config/classLevels.json:
     get:
-      summary: "Get available class levels for a roster"
+      tags:
+      - config
+      summary: Get available class levels for a roster
+      description: Return all available class levels for a roster. Class levels refer to the level of the course as specified by the course number (i.e. 1000, 2000). For instance, CS 4300 has a class level of 4000.
       parameters:
-      - name: "roster"
-        in: "query"
-        description: "Roster semester & year (i.e. FA14, SP16)"
+      - name: roster
+        in: query
+        description: Roster semester & year (i.e. FA14, SP15)
         required: true
-        type: "string"
+        type: string
       responses:
         200:
-          description: "A JSON of class levels"
+          description: A JSON of class levels
+          schema:
+            $ref: '#/definitions/ClassLevelsResponse'
   /config/subjects.json:
     get:
-      summary: "Get available subjects for roster"
+      tags:
+      - config
+      summary: Get available subjects for roster
+      description: Return all available course subjects for a roster.
       parameters:
-      - name: "roster"
-        in: "query"
-        description: "Roster semester & year (i.e. FA14, SP16)"
+      - name: roster
+        in: query
+        description: Roster semester & year (i.e. FA14, SP15)
         required: true
-        type: "string"
+        type: string
       responses:
         200:
-          description: "A JSON of subjects"
+          description: A JSON of subjects
+          schema:
+            $ref: '#/definitions/SubjectsResponse'
   /search/classes.json:
     get:
-      summary: "Get scheduled classes, including Course of Study details"
+      tags:
+      - search
+      summary: Get scheduled classes matching input query
+      description: Return all scheduled classes in the specified roster and subject matching the input query
       parameters:
-      - name: "roster"
-        in: "query"
-        description: "Roster semester & year (i.e. FA14, SP16)"
+      - name: roster
+        in: query
+        description: Roster semester & year (i.e. FA14, SP15)
         required: true
-        type: "string"
-      - name: "subject"
-        in: "query"
-        description: "Academic subject (i.e. CS, PHIL)"
+        type: string
+      - name: subject
+        in: query
+        description: Academic subject (i.e. CS, PHIL)
         required: true
-        type: "string"
-      - name: "acadGroup[]"
-        in: "query"
-        description: "Academic group (i.e. AG)"
+        type: string
+      - name: acadGroup[]
+        in: query
+        description: Academic group (i.e. AG)
         required: false
-        type: "string"
-      - name: "acadCareer[]"
-        in: "query"
-        description: "Academic career (i.e. GR)"
+        type: string
+      - name: acadCareer[]
+        in: query
+        description: Academic career (i.e. GR)
         required: false
-        type: "string"
-      - name: "classLevels[]"
-        in: "query"
-        description: "Class levels (i.e. 6000)"
+        type: string
+      - name: classLevels[]
+        in: query
+        description: Class levels (i.e. 6000)
         required: false
-        type: "integer"
-      - name: "crseAttrs[]"
-        in: "query"
-        description: "Course attribute (i.e. CU-SBY)"
+        type: integer
+      - name: crseAttrs[]
+        in: query
+        description: Course attribute (i.e. CU-SBY)
         required: false
-        type: "string"
-      - name: "q"
-        in: "query"
-        description: "Search term (i.e. graphics)"
+        type: string
+      - name: q
+        in: query
+        description: Search term (i.e. graphics)
         required: false
-        type: "string"
+        type: string
       responses:
         200:
-          description: "A JSON of classes"
-definitions: {}
+          description: A JSON of classes
+          schema:
+            $ref: '#/definitions/ClassesResponse'
+definitions:
+  RostersResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: success
+      data:
+        $ref: '#/definitions/RostersResponse_data'
+      message:
+        type: string
+        example: null
+      meta:
+        $ref: '#/definitions/RostersResponse_meta'
+    example:
+      data:
+        rosters:
+        - lastModifiedDttm: 2018-04-02T19:35:43-0400
+          strm: 2573
+          defaultInstructionMode: P
+          sharing: N
+          isDefaultRoster: N
+          version:
+            referenceDttm: 2015-01-14T18:16:01-0500
+            catalogDttm: 2015-01-14T18:21:04-0500
+            showCatalogNote: Y
+            catalogCourseNote: null
+            catalog:
+              acalogCatalogId: 22
+              descr: Courses of Study 2014-2015
+              descrshort: CoS 14-15
+              version:
+                status: COMPLETE
+            descriptionSource: CATALOG
+            status: COMPLETE
+          archiveMode: Y
+          defaultCampus: MAIN
+          descr: Fall 2014
+          defaultSessionCode: 1
+          descrshort: 2014FA
+          slug: FA14
+          defaultLocation: ITH
+        - lastModifiedDttm: 2018-04-02T19:35:43-0400
+          strm: 2573
+          defaultInstructionMode: P
+          sharing: N
+          isDefaultRoster: N
+          version:
+            referenceDttm: 2015-01-14T18:16:01-0500
+            catalogDttm: 2015-01-14T18:21:04-0500
+            showCatalogNote: Y
+            catalogCourseNote: null
+            catalog:
+              acalogCatalogId: 22
+              descr: Courses of Study 2014-2015
+              descrshort: CoS 14-15
+              version:
+                status: COMPLETE
+            descriptionSource: CATALOG
+            status: COMPLETE
+          archiveMode: Y
+          defaultCampus: MAIN
+          descr: Fall 2014
+          defaultSessionCode: 1
+          descrshort: 2014FA
+          slug: FA14
+          defaultLocation: ITH
+      meta:
+        copyright: Cornell University, Office of the University Registrar
+      message: null
+      status: success
+  AcadCareersResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: success
+      data:
+        $ref: '#/definitions/AcadCareersResponse_data'
+      message:
+        type: string
+        example: null
+      meta:
+        $ref: '#/definitions/Meta'
+    example:
+      data:
+        acadCareers:
+        - descr: Undergraduate
+          value: UG
+        - descr: Undergraduate
+          value: UG
+      meta:
+        referenceDttm: 2015-01-14T18:16:01-0500
+        copyright: Cornell University, Office of the University Registrar
+      message: null
+      status: success
+  AcadGroupsResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: success
+      data:
+        $ref: '#/definitions/AcadGroupsResponse_data'
+      message:
+        type: string
+        example: null
+      meta:
+        $ref: '#/definitions/Meta'
+    example:
+      data:
+        acadGroups:
+        - descr: Agriculture and Life Sciences
+          value: AG
+        - descr: Agriculture and Life Sciences
+          value: AG
+      meta:
+        referenceDttm: 2015-01-14T18:16:01-0500
+        copyright: Cornell University, Office of the University Registrar
+      message: null
+      status: success
+  ClassLevelsResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: success
+      data:
+        $ref: '#/definitions/ClassLevelsResponse_data'
+      message:
+        type: string
+        example: null
+      meta:
+        $ref: '#/definitions/Meta'
+    example:
+      data:
+        classLevels:
+        - descr: 1000
+          value: 1000
+        - descr: 1000
+          value: 1000
+      meta:
+        referenceDttm: 2015-01-14T18:16:01-0500
+        copyright: Cornell University, Office of the University Registrar
+      message: null
+      status: success
+  SubjectsResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: success
+      data:
+        $ref: '#/definitions/SubjectsResponse_data'
+      message:
+        type: string
+        example: null
+      meta:
+        $ref: '#/definitions/Meta'
+    example:
+      data:
+        subjects:
+        - descr: Asian American Studies
+          descrformal: Asian American Studies
+          value: AAS
+        - descr: Asian American Studies
+          descrformal: Asian American Studies
+          value: AAS
+      meta:
+        referenceDttm: 2015-01-14T18:16:01-0500
+        copyright: Cornell University, Office of the University Registrar
+      message: null
+      status: success
+  ClassesResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: success
+      data:
+        $ref: '#/definitions/ClassesResponse_data'
+      message:
+        type: string
+        example: null
+      meta:
+        $ref: '#/definitions/ClassesResponse_meta'
+    example:
+      data:
+        subjects:
+        - catalogBreadth:
+          catalogPrereqCoreq: Assumes basic high school mathematics (no calculus) but no programming experience.
+          enrollGroups:
+          - unitsMaximum: 4
+            sessionCode: 1
+            simpleCombinations: []
+            gradingBasisShort: Stdnt Opt
+            componentsOptional: []
+            gradingBasisLong: Student Option
+            sessionEndDt: 12/05/2014
+            unitsMinimum: 4
+            gradingBasis: OPT
+            sessionLong: Regular Academic Session
+            sessionBeginDt: 08/26/2014
+            componentsRequired: []
+            classSections: []
+          - unitsMaximum: 4
+            sessionCode: 1
+            simpleCombinations: []
+            gradingBasisShort: Stdnt Opt
+            componentsOptional: []
+            gradingBasisLong: Student Option
+            sessionEndDt: 12/05/2014
+            unitsMinimum: 4
+            gradingBasis: OPT
+            sessionLong: Regular Academic Session
+            sessionBeginDt: 08/26/2014
+            componentsRequired: []
+            classSections: []
+          catalogCourseSubfield:
+          subject: CS
+          catalogDistr: (MQR)
+          catalogOutcomes: []
+          description:
+          strm: 2573
+          catalogComments:
+          catalogForbiddenOverlaps:
+          acadCareer: UG
+          crseId: 358526
+          crseOfferNbr: 1
+          catalogNbr: 1110
+          catalogLang:
+          titleShort: Intro Computing Using Python
+          titleLong: Introduction to Computing Using Python
+          acadGroup: EN
+          catalogFee:
+          catalogPermission:
+          catalogWhenOffered: Fall, spring, summer.
+          catalogSatisfiesReq:
+        - catalogBreadth:
+          catalogPrereqCoreq: Assumes basic high school mathematics (no calculus) but no programming experience.
+          enrollGroups:
+          - unitsMaximum: 4
+            sessionCode: 1
+            simpleCombinations: []
+            gradingBasisShort: Stdnt Opt
+            componentsOptional: []
+            gradingBasisLong: Student Option
+            sessionEndDt: 12/05/2014
+            unitsMinimum: 4
+            gradingBasis: OPT
+            sessionLong: Regular Academic Session
+            sessionBeginDt: 08/26/2014
+            componentsRequired: []
+            classSections: []
+          - unitsMaximum: 4
+            sessionCode: 1
+            simpleCombinations: []
+            gradingBasisShort: Stdnt Opt
+            componentsOptional: []
+            gradingBasisLong: Student Option
+            sessionEndDt: 12/05/2014
+            unitsMinimum: 4
+            gradingBasis: OPT
+            sessionLong: Regular Academic Session
+            sessionBeginDt: 08/26/2014
+            componentsRequired: []
+            classSections: []
+          catalogCourseSubfield:
+          subject: CS
+          catalogDistr: (MQR)
+          catalogOutcomes: []
+          description:
+          strm: 2573
+          catalogComments:
+          catalogForbiddenOverlaps:
+          acadCareer: UG
+          crseId: 358526
+          crseOfferNbr: 1
+          catalogNbr: 1110
+          catalogLang:
+          titleShort: Intro Computing Using Python
+          titleLong: Introduction to Computing Using Python
+          acadGroup: EN
+          catalogFee:
+          catalogPermission:
+          catalogWhenOffered: Fall, spring, summer.
+          catalogSatisfiesReq:
+      meta:
+        copyright: Cornell University, Office of the University Registrar
+        catalogDttm: 2015-01-14T18:21:04-0500
+        rosterDttm: 2015-01-14T18:16:01-0500
+      message: null
+      status: success
+  Roster:
+    type: object
+    properties:
+      slug:
+        type: string
+        example: FA14
+      isDefaultRoster:
+        type: string
+        example: N
+      strm:
+        type: string
+        example: 2573
+      descr:
+        type: string
+        example: Fall 2014
+      descrshort:
+        type: string
+        example: 2014FA
+      defaultSessionCode:
+        type: string
+        example: 1
+      defaultCampus:
+        type: string
+        example: MAIN
+      defaultLocation:
+        type: string
+        example: ITH
+      defaultInstructionMode:
+        type: string
+        example: P
+      sharing:
+        type: string
+        example: N
+      archiveMode:
+        type: string
+        example: Y
+      version:
+        $ref: '#/definitions/Roster_version'
+      lastModifiedDttm:
+        type: string
+        example: 2018-04-02T19:35:43-0400
+    example:
+      lastModifiedDttm: 2018-04-02T19:35:43-0400
+      strm: 2573
+      defaultInstructionMode: P
+      sharing: N
+      isDefaultRoster: N
+      version:
+        referenceDttm: 2015-01-14T18:16:01-0500
+        catalogDttm: 2015-01-14T18:21:04-0500
+        showCatalogNote: Y
+        catalogCourseNote: null
+        catalog:
+          acalogCatalogId: 22
+          descr: Courses of Study 2014-2015
+          descrshort: CoS 14-15
+          version:
+            status: COMPLETE
+        descriptionSource: CATALOG
+        status: COMPLETE
+      archiveMode: Y
+      defaultCampus: MAIN
+      descr: Fall 2014
+      defaultSessionCode: 1
+      descrshort: 2014FA
+      slug: FA14
+      defaultLocation: ITH
+  AcadCareers:
+    type: object
+    properties:
+      value:
+        type: string
+        example: UG
+      descr:
+        type: string
+        example: Undergraduate
+    example:
+      descr: Undergraduate
+      value: UG
+  AcadGroups:
+    type: object
+    properties:
+      value:
+        type: string
+        example: AG
+      descr:
+        type: string
+        example: Agriculture and Life Sciences
+    example:
+      descr: Agriculture and Life Sciences
+      value: AG
+  ClassLevels:
+    type: object
+    properties:
+      value:
+        type: string
+        example: 1000
+      descr:
+        type: integer
+        example: 1000
+    example:
+      descr: 1000
+      value: 1000
+  Subjects:
+    type: object
+    properties:
+      value:
+        type: string
+        example: AAS
+      descr:
+        type: string
+        example: Asian American Studies
+      descrformal:
+        type: string
+        example: Asian American Studies
+    example:
+      descr: Asian American Studies
+      descrformal: Asian American Studies
+      value: AAS
+  Classes:
+    type: object
+    properties:
+      strm:
+        type: integer
+        example: 2573
+      crseId:
+        type: integer
+        example: 358526
+      crseOfferNbr:
+        type: integer
+        example: 1
+      subject:
+        type: string
+        example: CS
+      catalogNbr:
+        type: string
+        example: 1110
+      titleShort:
+        type: string
+        example: Intro Computing Using Python
+      titleLong:
+        type: string
+        example: Introduction to Computing Using Python
+      enrollGroups:
+        type: array
+        items:
+          $ref: '#/definitions/Classes_enrollGroups'
+      description:
+        type: string
+        example:
+      catalogBreadth:
+        type: string
+        example:
+      catalogDistr:
+        type: string
+        example: (MQR)
+      catalogLang:
+        type: string
+        example:
+      catalogForbiddenOverlaps:
+        type: string
+        example:
+      catalogWhenOffered:
+        type: string
+        example: Fall, spring, summer.
+      catalogComments:
+        type: string
+        example:
+      catalogPrereqCoreq:
+        type: string
+        example: Assumes basic high school mathematics (no calculus) but no programming experience.
+      catalogFee:
+        type: string
+        example:
+      catalogSatisfiesReq:
+        type: string
+        example:
+      catalogPermission:
+        type: string
+        example:
+      catalogCourseSubfield:
+        type: string
+        example:
+      catalogOutcomes:
+        type: array
+        example: []
+        items:
+          type: string
+      acadCareer:
+        type: string
+        example: UG
+      acadGroup:
+        type: string
+        example: EN
+    example:
+      catalogBreadth:
+      catalogPrereqCoreq: Assumes basic high school mathematics (no calculus) but no programming experience.
+      enrollGroups:
+      - unitsMaximum: 4
+        sessionCode: 1
+        simpleCombinations: []
+        gradingBasisShort: Stdnt Opt
+        componentsOptional: []
+        gradingBasisLong: Student Option
+        sessionEndDt: 12/05/2014
+        unitsMinimum: 4
+        gradingBasis: OPT
+        sessionLong: Regular Academic Session
+        sessionBeginDt: 08/26/2014
+        componentsRequired: []
+        classSections: []
+      - unitsMaximum: 4
+        sessionCode: 1
+        simpleCombinations: []
+        gradingBasisShort: Stdnt Opt
+        componentsOptional: []
+        gradingBasisLong: Student Option
+        sessionEndDt: 12/05/2014
+        unitsMinimum: 4
+        gradingBasis: OPT
+        sessionLong: Regular Academic Session
+        sessionBeginDt: 08/26/2014
+        componentsRequired: []
+        classSections: []
+      catalogCourseSubfield:
+      subject: CS
+      catalogDistr: (MQR)
+      catalogOutcomes: []
+      description:
+      strm: 2573
+      catalogComments:
+      catalogForbiddenOverlaps:
+      acadCareer: UG
+      crseId: 358526
+      crseOfferNbr: 1
+      catalogNbr: 1110
+      catalogLang:
+      titleShort: Intro Computing Using Python
+      titleLong: Introduction to Computing Using Python
+      acadGroup: EN
+      catalogFee:
+      catalogPermission:
+      catalogWhenOffered: Fall, spring, summer.
+      catalogSatisfiesReq:
+  Meta:
+    type: object
+    properties:
+      copyright:
+        type: string
+        example: Cornell University, Office of the University Registrar
+      referenceDttm:
+        type: string
+        example: 2015-01-14T18:16:01-0500
+    example:
+      referenceDttm: 2015-01-14T18:16:01-0500
+      copyright: Cornell University, Office of the University Registrar
+  RostersResponse_data:
+    properties:
+      rosters:
+        type: array
+        items:
+          $ref: '#/definitions/Roster'
+    example:
+      rosters:
+      - lastModifiedDttm: 2018-04-02T19:35:43-0400
+        strm: 2573
+        defaultInstructionMode: P
+        sharing: N
+        isDefaultRoster: N
+        version:
+          referenceDttm: 2015-01-14T18:16:01-0500
+          catalogDttm: 2015-01-14T18:21:04-0500
+          showCatalogNote: Y
+          catalogCourseNote: null
+          catalog:
+            acalogCatalogId: 22
+            descr: Courses of Study 2014-2015
+            descrshort: CoS 14-15
+            version:
+              status: COMPLETE
+          descriptionSource: CATALOG
+          status: COMPLETE
+        archiveMode: Y
+        defaultCampus: MAIN
+        descr: Fall 2014
+        defaultSessionCode: 1
+        descrshort: 2014FA
+        slug: FA14
+        defaultLocation: ITH
+      - lastModifiedDttm: 2018-04-02T19:35:43-0400
+        strm: 2573
+        defaultInstructionMode: P
+        sharing: N
+        isDefaultRoster: N
+        version:
+          referenceDttm: 2015-01-14T18:16:01-0500
+          catalogDttm: 2015-01-14T18:21:04-0500
+          showCatalogNote: Y
+          catalogCourseNote: null
+          catalog:
+            acalogCatalogId: 22
+            descr: Courses of Study 2014-2015
+            descrshort: CoS 14-15
+            version:
+              status: COMPLETE
+          descriptionSource: CATALOG
+          status: COMPLETE
+        archiveMode: Y
+        defaultCampus: MAIN
+        descr: Fall 2014
+        defaultSessionCode: 1
+        descrshort: 2014FA
+        slug: FA14
+        defaultLocation: ITH
+  RostersResponse_meta:
+    properties:
+      copyright:
+        type: string
+        example: Cornell University, Office of the University Registrar
+    example:
+      copyright: Cornell University, Office of the University Registrar
+  AcadCareersResponse_data:
+    properties:
+      acadCareers:
+        type: array
+        items:
+          $ref: '#/definitions/AcadCareers'
+    example:
+      acadCareers:
+      - descr: Undergraduate
+        value: UG
+      - descr: Undergraduate
+        value: UG
+  AcadGroupsResponse_data:
+    properties:
+      acadGroups:
+        type: array
+        items:
+          $ref: '#/definitions/AcadGroups'
+    example:
+      acadGroups:
+      - descr: Agriculture and Life Sciences
+        value: AG
+      - descr: Agriculture and Life Sciences
+        value: AG
+  ClassLevelsResponse_data:
+    properties:
+      classLevels:
+        type: array
+        items:
+          $ref: '#/definitions/ClassLevels'
+    example:
+      classLevels:
+      - descr: 1000
+        value: 1000
+      - descr: 1000
+        value: 1000
+  SubjectsResponse_data:
+    properties:
+      subjects:
+        type: array
+        items:
+          $ref: '#/definitions/Subjects'
+    example:
+      subjects:
+      - descr: Asian American Studies
+        descrformal: Asian American Studies
+        value: AAS
+      - descr: Asian American Studies
+        descrformal: Asian American Studies
+        value: AAS
+  ClassesResponse_data:
+    properties:
+      subjects:
+        type: array
+        items:
+          $ref: '#/definitions/Classes'
+    example:
+      subjects:
+      - catalogBreadth:
+        catalogPrereqCoreq: Assumes basic high school mathematics (no calculus) but no programming experience.
+        enrollGroups:
+        - unitsMaximum: 4
+          sessionCode: 1
+          simpleCombinations: []
+          gradingBasisShort: Stdnt Opt
+          componentsOptional: []
+          gradingBasisLong: Student Option
+          sessionEndDt: 12/05/2014
+          unitsMinimum: 4
+          gradingBasis: OPT
+          sessionLong: Regular Academic Session
+          sessionBeginDt: 08/26/2014
+          componentsRequired: []
+          classSections: []
+        - unitsMaximum: 4
+          sessionCode: 1
+          simpleCombinations: []
+          gradingBasisShort: Stdnt Opt
+          componentsOptional: []
+          gradingBasisLong: Student Option
+          sessionEndDt: 12/05/2014
+          unitsMinimum: 4
+          gradingBasis: OPT
+          sessionLong: Regular Academic Session
+          sessionBeginDt: 08/26/2014
+          componentsRequired: []
+          classSections: []
+        catalogCourseSubfield:
+        subject: CS
+        catalogDistr: (MQR)
+        catalogOutcomes: []
+        description:
+        strm: 2573
+        catalogComments:
+        catalogForbiddenOverlaps:
+        acadCareer: UG
+        crseId: 358526
+        crseOfferNbr: 1
+        catalogNbr: 1110
+        catalogLang:
+        titleShort: Intro Computing Using Python
+        titleLong: Introduction to Computing Using Python
+        acadGroup: EN
+        catalogFee:
+        catalogPermission:
+        catalogWhenOffered: Fall, spring, summer.
+        catalogSatisfiesReq:
+      - catalogBreadth:
+        catalogPrereqCoreq: Assumes basic high school mathematics (no calculus) but no programming experience.
+        enrollGroups:
+        - unitsMaximum: 4
+          sessionCode: 1
+          simpleCombinations: []
+          gradingBasisShort: Stdnt Opt
+          componentsOptional: []
+          gradingBasisLong: Student Option
+          sessionEndDt: 12/05/2014
+          unitsMinimum: 4
+          gradingBasis: OPT
+          sessionLong: Regular Academic Session
+          sessionBeginDt: 08/26/2014
+          componentsRequired: []
+          classSections: []
+        - unitsMaximum: 4
+          sessionCode: 1
+          simpleCombinations: []
+          gradingBasisShort: Stdnt Opt
+          componentsOptional: []
+          gradingBasisLong: Student Option
+          sessionEndDt: 12/05/2014
+          unitsMinimum: 4
+          gradingBasis: OPT
+          sessionLong: Regular Academic Session
+          sessionBeginDt: 08/26/2014
+          componentsRequired: []
+          classSections: []
+        catalogCourseSubfield:
+        subject: CS
+        catalogDistr: (MQR)
+        catalogOutcomes: []
+        description:
+        strm: 2573
+        catalogComments:
+        catalogForbiddenOverlaps:
+        acadCareer: UG
+        crseId: 358526
+        crseOfferNbr: 1
+        catalogNbr: 1110
+        catalogLang:
+        titleShort: Intro Computing Using Python
+        titleLong: Introduction to Computing Using Python
+        acadGroup: EN
+        catalogFee:
+        catalogPermission:
+        catalogWhenOffered: Fall, spring, summer.
+        catalogSatisfiesReq:
+  ClassesResponse_meta:
+    properties:
+      copyright:
+        type: string
+        example: Cornell University, Office of the University Registrar
+      rosterDttm:
+        type: string
+        example: 2015-01-14T18:16:01-0500
+      catalogDttm:
+        type: string
+        example: 2015-01-14T18:21:04-0500
+    example:
+      copyright: Cornell University, Office of the University Registrar
+      catalogDttm: 2015-01-14T18:21:04-0500
+      rosterDttm: 2015-01-14T18:16:01-0500
+  Roster_version_catalog_version:
+    properties:
+      status:
+        type: string
+        example: COMPLETE
+    example:
+      status: COMPLETE
+  Roster_version_catalog:
+    properties:
+      descrshort:
+        type: string
+        example: CoS 14-15
+      descr:
+        type: string
+        example: Courses of Study 2014-2015
+      acalogCatalogId:
+        type: integer
+        example: 22
+      version:
+        $ref: '#/definitions/Roster_version_catalog_version'
+    example:
+      acalogCatalogId: 22
+      descr: Courses of Study 2014-2015
+      descrshort: CoS 14-15
+      version:
+        status: COMPLETE
+  Roster_version:
+    properties:
+      status:
+        type: string
+        example: COMPLETE
+      referenceDttm:
+        type: string
+        example: 2015-01-14T18:16:01-0500
+      catalogDttm:
+        type: string
+        example: 2015-01-14T18:21:04-0500
+      descriptionSource:
+        type: string
+        example: CATALOG
+      showCatalogNote:
+        type: string
+        example: Y
+      catalogCourseNote:
+        type: string
+        example: null
+      catalog:
+        $ref: '#/definitions/Roster_version_catalog'
+    example:
+      referenceDttm: 2015-01-14T18:16:01-0500
+      catalogDttm: 2015-01-14T18:21:04-0500
+      showCatalogNote: Y
+      catalogCourseNote: null
+      catalog:
+        acalogCatalogId: 22
+        descr: Courses of Study 2014-2015
+        descrshort: CoS 14-15
+        version:
+          status: COMPLETE
+      descriptionSource: CATALOG
+      status: COMPLETE
+  Classes_enrollGroups:
+    properties:
+      classSections:
+        type: array
+        example: []
+        items:
+          type: object
+          properties: {}
+      unitsMinimum:
+        type: integer
+        example: 4
+      unitsMaximum:
+        type: integer
+        example: 4
+      componentsOptional:
+        type: array
+        example: []
+        items:
+          type: string
+      componentsRequired:
+        type: array
+        example: []
+        items:
+          type: string
+      gradingBasis:
+        type: string
+        example: OPT
+      gradingBasisShort:
+        type: string
+        example: Stdnt Opt
+      gradingBasisLong:
+        type: string
+        example: Student Option
+      simpleCombinations:
+        type: array
+        example: []
+        items:
+          type: string
+      sessionCode:
+        type: string
+        example: 1
+      sessionBeginDt:
+        type: string
+        example: 08/26/2014
+      sessionEndDt:
+        type: string
+        example: 12/05/2014
+      sessionLong:
+        type: string
+        example: Regular Academic Session
+    example:
+      unitsMaximum: 4
+      sessionCode: 1
+      simpleCombinations: []
+      gradingBasisShort: Stdnt Opt
+      componentsOptional: []
+      gradingBasisLong: Student Option
+      sessionEndDt: 12/05/2014
+      unitsMinimum: 4
+      gradingBasis: OPT
+      sessionLong: Regular Academic Session
+      sessionBeginDt: 08/26/2014
+      componentsRequired: []
+      classSections: []
